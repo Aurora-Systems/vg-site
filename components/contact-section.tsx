@@ -89,7 +89,7 @@ export function ContactSection() {
                   </div>
                   <div className="min-w-0">
                     <p className="font-medium">Phone</p>
-                    <p className="text-muted-foreground text-sm">+27 (0) 123 456 789</p>
+                    <p className="text-muted-foreground text-sm">+263 78 004 0000</p>
                   </div>
                 </div>
               </div>
