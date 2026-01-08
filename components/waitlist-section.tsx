@@ -85,11 +85,11 @@ export function WaitlistSection() {
                 />
                 <p className="text-xs text-muted-foreground text-center md:text-left -mt-2">
                   By joining, you agree to our{" "}
-                  <a href="#" className="text-primary hover:underline">
+                  <a href="/legal/PrivacyPolicy" className="text-primary hover:underline">
                     Privacy Policy
                   </a>{" "}
                   and{" "}
-                  <a href="#" className="text-primary hover:underline">
+                  <a href="/legal/TermsAndConditions" className="text-primary hover:underline">
                     Terms & Conditions
                   </a>
                   .
