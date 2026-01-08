@@ -1,7 +1,5 @@
 export default function PrivacyPolicy() {
     return (
-        <main>
-            <h1>Privacy Policy</h1>
-        </main>
+        <embed src="https://lekkerclap.sirv.com/privacy-policy-08-01-2026.pdf" type="application/pdf" width="100%" height="600px"></embed>
     )
 }
