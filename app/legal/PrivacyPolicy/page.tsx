@@ -13,7 +13,7 @@ export default function PrivacyPolicy(){
   };
 
   return (
-    <div className="min-h-screen container overflow-x-hidden">
+    <div className="min-h-screen ">
       <style>{`
         
         * {
