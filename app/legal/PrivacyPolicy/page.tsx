@@ -15,7 +15,6 @@ export default function PrivacyPolicy(){
   return (
     <div className="min-h-screen container overflow-x-hidden">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
         
         * {
           margin: 0;
@@ -24,13 +23,11 @@ export default function PrivacyPolicy(){
         }
 
         body {
-          font-family: 'DM Sans', sans-serif;
           line-height: 1.7;
           color: #1e293b;
         }
 
         h1, h2, h3, h4, h5, h6 {
-          font-family: 'Crimson Pro', serif;
           font-weight: 700;
         }
 
