@@ -9,7 +9,7 @@ export function ComingSoonSection() {
             <div className="max-w-6xl mx-auto">
                 <div className="glass-panel p-8 md:p-12 rounded-3xl text-center">
                     <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                        Coming Soon to <span className="text-primary glow-text">Mobile</span>
+                        Coming Soon to IOS, available on <span className="text-primary glow-text">Playstore</span>
                     </h2>
                     <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
                         LekkerClap will be available on your favorite platforms. Join the waitlist to be notified when we launch!
@@ -31,7 +31,7 @@ export function ComingSoonSection() {
                         </div>
 
                         {/* Google Play Store Badge */}
-                        <div className="opacity-60 grayscale cursor-not-allowed selection:bg-transparent">
+                        <div className="selection:bg-transparent" onClick={() => window.open("https://play.google.com/store/apps/details?id=attribute.xyz&pcampaignid=web_share", "_blank")}>
                             <Image
                                 src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                                 alt="Get it on Google Play"
