@@ -746,7 +746,7 @@ export default function EULAPage() {
             <SubHeading>22.3 Zimbabwe Cyber and Data Protection Act</SubHeading>
             <P>Zimbabwean users are protected by the Cyber and Data Protection Act. Processing of personal data including Location Data is conducted in compliance with that Act.</P>
             <SubHeading>22.4 Governing Law and Dispute Resolution</SubHeading>
-            <P>This EULA is governed by the laws of [Specify Jurisdiction]. Disputes shall be resolved through a 30-day informal negotiation period followed by binding arbitration. Exceptions include data protection authority complaints, emergency injunctive relief, and small claims proceedings.</P>
+            <P>This EULA is governed by the laws of the United Kingdom. Disputes shall be resolved through a 30-day informal negotiation period followed by binding arbitration. Exceptions include data protection authority complaints, emergency injunctive relief, and small claims proceedings.</P>
 
             {/* ── S23: Acknowledgment ──────────────────────────────────────── */}
             <SectionHeading id="s23" number="23" title="Acknowledgment" />
