@@ -32,7 +32,7 @@ export function YouTubeOverlay() {
           
           {/* Button */}
           <a
-            href="https://youtube.com/live/VVlPP1GDlP0?feature=share"
+            href="https://www.youtube.com/live/DkDGVuJp_jw"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors mb-4 w-full"
