@@ -6,10 +6,12 @@ import { WaitlistSection } from "@/components/waitlist-section"
 import { PricingSection } from "@/components/pricing-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
+import { YouTubeOverlay } from "@/components/youtube-overlay"
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground overflow-hidden">
+      <YouTubeOverlay />
       <Navbar />
       <div className="pt-20">
         <HeroSection />
