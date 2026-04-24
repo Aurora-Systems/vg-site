@@ -14,7 +14,7 @@ export function YouTubeOverlay() {
   if (!isVisible) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div className="relative bg-white rounded-lg shadow-lg max-w-md w-11/12 p-8">
         {/* Close button */}
         <button
@@ -32,7 +32,7 @@ export function YouTubeOverlay() {
           
           {/* Button */}
           <a
-            href="https://www.youtube.com/live/DkDGVuJp_jw"
+            href="https://www.youtube.com/live/rEnQW5XOyKQ?si=bN8rSTIX4slmMFfs"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors mb-4 w-full"

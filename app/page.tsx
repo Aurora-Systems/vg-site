@@ -7,6 +7,7 @@ import { PricingSection } from "@/components/pricing-section"
 import { ContactSection } from "@/components/contact-section"
 import { PreviousLivesSection } from "@/components/previous-lives-section"
 import { Footer } from "@/components/footer"
+import { YouTubeOverlay } from "@/components/youtube-overlay"
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <ContactSection />
         <Footer />
       </div>
+      <YouTubeOverlay />
     </main>
   )
 }
