@@ -7,8 +7,6 @@ import { PricingSection } from "@/components/pricing-section"
 import { ContactSection } from "@/components/contact-section"
 import { PreviousLivesSection } from "@/components/previous-lives-section"
 import { Footer } from "@/components/footer"
-import { YouTubeOverlay } from "@/components/youtube-overlay"
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground overflow-hidden">
@@ -17,12 +15,12 @@ export default function Home() {
         <HeroSection />
         <ComingSoonSection />
         <FeaturesSection />
+        <PreviousLivesSection />
         <WaitlistSection />
         <PricingSection />
         <ContactSection />
         <Footer />
       </div>
-      <YouTubeOverlay />
     </main>
   )
 }
