@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Facebook, Instagram, Linkedin } from "lucide-react"
 
 const links = [
+  { label: "Download", href: "/download" },
   { label: "Privacy", href: "/legal/PrivacyPolicy" },
   { label: "Terms", href: "/legal/TermsAndConditions" },
   { label: "EULA", href: "/legal/EULA" },
