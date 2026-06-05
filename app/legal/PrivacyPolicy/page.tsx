@@ -487,7 +487,7 @@ export default function PrivacyPolicy(){
             <section id="introduction" className="section">
               <h2 className="section-title">1. INTRODUCTION</h2>
               <p className="paragraph">
-                LekkerClap ("we," "our," "us," or "Company") is committed to protecting your privacy and ensuring you have a positive experience on our platform. This Privacy Policy explains how we collect, use, disclose, and safeguard information when you use our mobile application and website (collectively, the "Platform"), including features that allow you to send distress alerts and connect with emergency services and nearby LekkerClap users.
+                LekkerClap ("we," "our," "us," or "Company") is committed to protecting your privacy and ensuring you have a positive experience on our platform. This Privacy Policy explains how we collect, use, disclose, and safeguard information when you use our mobile application and website (collectively, the "Platform"), including features that allow you to send alerts to nearby LekkerClap community neighborhood-watch members. LekkerClap is a community neighborhood-watch tool; it is not an emergency service and is not connected to any emergency services system. Alerts ping and notify nearby community members only — they are not sent to police, fire, ambulance, or any official emergency dispatch.
               </p>
               <p className="paragraph">
                 This Privacy Policy applies to all users globally and complies with applicable data protection laws, including the Protection of Personal Information Act (POPIA) [South Africa], the European Union's General Data Protection Regulation (GDPR), the California Consumer Privacy Act and California Privacy Rights Act (CCPA/CPRA), the Children's Online Privacy Protection Act (COPPA), the Zimbabwe Cyber and Data Protection Act [Chapter 12:07], and other applicable privacy regulations in jurisdictions where our Platform operates or where our users are located.
@@ -517,10 +517,13 @@ export default function PrivacyPolicy(){
                   <span className="definition-term">"Data Processor"</span> means any entity processing personal data on behalf of LekkerClap, including third-party service providers such as Didit (identity verification provider).
                 </li>
                 <li className="list-item">
-                  <span className="definition-term">"Emergency Services"</span> means authorized public emergency response entities, including police, fire, medical, and other first responders designated to receive distress alerts.
+                  <span className="definition-term">"Community Member"</span> or <span className="definition-term">"Neighborhood-Watch Member"</span> means a fellow LekkerClap user, or a contact you have designated, who may receive your Alert. Community Members are volunteers; LekkerClap does not employ, dispatch, or control them.
                 </li>
                 <li className="list-item">
-                  <span className="definition-term">"Distress Alert"</span> means the urgent notification transmitted through the Platform when a user activates the emergency feature to request immediate assistance.
+                  <span className="definition-term">"Emergency Services"</span> means external public emergency response entities (police, fire, medical, and other first responders). LekkerClap is <strong>not</strong> connected to, integrated with, or able to dispatch any Emergency Services; you must contact them directly.
+                </li>
+                <li className="list-item">
+                  <span className="definition-term">"Alert"</span> or <span className="definition-term">"Distress Alert"</span> means the notification sent through the Platform when a user activates the alert feature to ping and notify nearby community neighborhood-watch members and their designated contacts. It is not transmitted to any Emergency Services or official dispatch.
                 </li>
               </ul>
             </section>
@@ -539,7 +542,7 @@ export default function PrivacyPolicy(){
                 <strong>Distress Alert Information:</strong> - Your precise GPS location (latitude and longitude) at the time of alert activation - Approximate location based on cell tower or WiFi data - Timestamp of the alert - Nature or category of emergency (if provided) - Voice, video, or message content in the distress alert - Your real-time location updates during active alert response - Device type, operating system, and connectivity information
               </p>
               <p className="paragraph">
-                <strong>Communication Information:</strong> - Messages you send to nearby LekkerClap users responding to your alert - Voice or video call recordings (if you enable this feature) - User-to-user chat history with responders - Feedback and ratings provided after alert resolution
+                <strong>Communication Information:</strong> - Messages you send to nearby LekkerClap community members responding to your alert - Voice or video call recordings (if you enable this feature) - User-to-user chat history with responding community members - Feedback and ratings provided after alert resolution
               </p>
               <p className="paragraph">
                 <strong>Device and Technical Information:</strong> - Device model, manufacturer, and operating system version - Device identifier (IMEI, IDFA, or Android Advertising ID) - IP address and ISP information - Mobile network information (carrier, signal strength) - App version and installation date - Crash reports and performance diagnostics - WiFi network names and MAC addresses
@@ -570,7 +573,7 @@ export default function PrivacyPolicy(){
                 <strong>From Didit (Identity Verification Provider):</strong> - Age verification results and confirmed identity status - Verification success/failure indicators - Compliance attestation regarding identity confirmation
               </p>
               <p className="paragraph">
-                <strong>From Emergency Services:</strong> - Confirmation of alert receipt and dispatch information - Response and resolution status - Incident reports or follow-up information they choose to share
+                <strong>From Other Community Members Responding to Alerts:</strong> - Confirmation of alert receipt - Response and resolution status - Notes or follow-up information they choose to share
               </p>
               <p className="paragraph">
                 <strong>From Other Users:</strong> - Information reported about your account (abuse reports, complaints) - Ratings and feedback provided after interactions
@@ -595,17 +598,17 @@ export default function PrivacyPolicy(){
               </p>
 
               <p className="paragraph">
-                <strong>A. Performance of a Contract (PRIMARY)</strong> Applies to: - Account creation and user registration - Location sharing during active alerts - Alert delivery and emergency response coordination - Communication with responders
+                <strong>A. Performance of a Contract (PRIMARY)</strong> Applies to: - Account creation and user registration - Location sharing during active alerts - Alert delivery and community notification coordination - Communication with responding community members
               </p>
               <p className="paragraph">
-                Why this works: You download the app to receive the emergency alert service. Processing your location data during alerts is essential to deliver this service you have contracted for. We do not need your consent for this processing – it is mandatory for service delivery.
+                Why this works: You download the app to receive the community alert service. Processing your location data during alerts is essential to deliver this service you have contracted for. We do not need your consent for this processing – it is mandatory for service delivery.
               </p>
               <p className="paragraph">
                 Your Rights: - This processing cannot be objected to as it is necessary for contract performance - We cannot refuse service if you object to contract-based processing - However, you retain the right to delete your account and stop using the service
               </p>
 
               <p className="paragraph">
-                <strong>B. Legitimate Interest (SECONDARY)</strong> Applies to: - Community awareness and proximity matching of responders - Anonymised safety analytics to improve the service - Abuse prevention and fraud detection - Platform security and integrity - Service improvement and feature development
+                <strong>B. Legitimate Interest (SECONDARY)</strong> Applies to: - Community awareness and proximity matching of nearby community members - Anonymised safety analytics to improve the service - Abuse prevention and fraud detection - Platform security and integrity - Service improvement and feature development
               </p>
               <p className="paragraph">
                 POPIA Requirement: Processing must be reasonable, necessary, and balanced. Your privacy interests cannot be overridden by our legitimate interests.
@@ -614,7 +617,7 @@ export default function PrivacyPolicy(){
                 Your Privacy Zone Architecture Supports This: - We mask or reduce location precision inside your privacy zones - Precise data is temporary and alert-scoped only - We do not continuously track location outside alerts - We do not sell location data
               </p>
               <p className="paragraph">
-                Balancing Test: - Our interest in safety analytics serves the public interest (better emergency response) - Your interest in privacy is protected by data minimization and anonymisation - The benefit to community safety outweighs the limited impact on your privacy
+                Balancing Test: - Our interest in safety analytics serves the public interest (better community awareness and response) - Your interest in privacy is protected by data minimization and anonymisation - The benefit to community safety outweighs the limited impact on your privacy
               </p>
               <p className="paragraph">
                 Your Rights: - You have the right to object to this processing - We must then cease processing unless we can demonstrate compelling legitimate interests - Objection does not affect contract-based processing (alerts will still work)
@@ -640,7 +643,7 @@ export default function PrivacyPolicy(){
                 POPIA Legal Basis: POPIA explicitly permits processing to protect the vital interests (life or physical safety) of a data subject or another person. This is a separate lawful basis from consent or contract.
               </p>
               <p className="paragraph">
-                Example: If you activate a distress alert during what appears to be a violent crime, we can share your precise location with emergency services without needing your consent – your safety overrides consent requirements.
+                Example: If you activate a distress alert during what appears to be a violent crime, we can share your precise location with nearby community members without needing your consent – your safety overrides consent requirements. (LekkerClap does not relay your location to emergency services; you should contact them directly.)
               </p>
               <p className="paragraph">
                 Your Rights: - You cannot object to this processing when vital interests are at stake - However, we apply this basis narrowly – only when there is genuine risk to life or safety - After the emergency passes, normal privacy protections resume
@@ -652,12 +655,12 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">5.1 Core Service Delivery</h3>
               <ul className="list">
-                <li className="list-item"><strong>Emergency Alert Transmission:</strong> To send your distress alert to nearby LekkerClap users and authorize emergency services</li>
-                <li className="list-item"><strong>Location Routing:</strong> To identify and notify users within geographic proximity to your emergency location</li>
+                <li className="list-item"><strong>Alert Transmission:</strong> To send your alert to nearby LekkerClap community neighborhood-watch members</li>
+                <li className="list-item"><strong>Location Routing:</strong> To identify and notify community members within geographic proximity to your alert location</li>
                 <li className="list-item"><strong>User Verification:</strong> To confirm your identity and age eligibility through Didit verification, ensuring only appropriate users access the platform</li>
-                <li className="list-item"><strong>Emergency Coordination:</strong> To coordinate response efforts between platform users and official emergency services</li>
+                <li className="list-item"><strong>Community Coordination:</strong> To coordinate response efforts between platform users and community members (LekkerClap is not connected to, and does not coordinate with, emergency services)</li>
                 <li className="list-item"><strong>Alert Management:</strong> To track alert status, response times, and resolution outcomes</li>
-                <li className="list-item"><strong>User Communication:</strong> To facilitate messages and communications between you and responders</li>
+                <li className="list-item"><strong>User Communication:</strong> To facilitate messages and communications between you and responding community members</li>
               </ul>
 
               <h3 className="subsection-title">5.2 Account Management and Security</h3>
@@ -669,19 +672,19 @@ export default function PrivacyPolicy(){
                 <li className="list-item"><strong>Password Recovery:</strong> Enabling account recovery and security credential reset</li>
               </ul>
 
-              <h3 className="subsection-title">5.3 Safety and Emergency Response</h3>
+              <h3 className="subsection-title">5.3 Safety and Community Response</h3>
               <ul className="list">
-                <li className="list-item"><strong>Safety Monitoring:</strong> Analyzing distress alerts for patterns indicating genuine emergencies versus misuse</li>
-                <li className="list-item"><strong>Emergency Dispatch Coordination:</strong> Sharing location and emergency details with authorized emergency services</li>
+                <li className="list-item"><strong>Safety Monitoring:</strong> Analyzing alerts for patterns indicating genuine situations versus misuse</li>
+                <li className="list-item"><strong>Community Notification:</strong> Sharing your location and alert details with nearby community neighborhood-watch members</li>
                 <li className="list-item"><strong>Response Tracking:</strong> Monitoring response times, user safety outcomes, and incident resolution</li>
-                <li className="list-item"><strong>Emergency Service Integration:</strong> Transmitting alerts to official emergency services systems</li>
-                <li className="list-item"><strong>Incident Investigation:</strong> Investigating reports of platform misuse, false alerts, or emergency service abuse</li>
+                <li className="list-item"><strong>Community Alert Routing:</strong> Transmitting alerts to nearby community members through our Community Alert Network (not to any emergency services system)</li>
+                <li className="list-item"><strong>Incident Investigation:</strong> Investigating reports of platform misuse, false alerts, or alert-feature abuse</li>
               </ul>
 
               <h3 className="subsection-title">5.4 Communications</h3>
               <ul className="list">
                 <li className="list-item"><strong>Transactional Emails/SMS:</strong> Sending account confirmations, password resets, alert acknowledgments, and service notifications</li>
-                <li className="list-item"><strong>Alert Notifications:</strong> Pushing urgent notifications about distress alerts and emergency responses</li>
+                <li className="list-item"><strong>Alert Notifications:</strong> Pushing urgent notifications about alerts and community responses</li>
                 <li className="list-item"><strong>Safety Alerts:</strong> Notifying you of suspicious account activity or security concerns</li>
                 <li className="list-item"><strong>Service Updates:</strong> Informing you of platform changes, maintenance, and feature updates</li>
                 <li className="list-item"><strong>Parental Communications:</strong> Sending required privacy notices and consent requests to parents/guardians of minor users</li>
@@ -691,9 +694,9 @@ export default function PrivacyPolicy(){
               <ul className="list">
                 <li className="list-item"><strong>Usage Analytics:</strong> Analyzing how users interact with the platform to improve features and user experience</li>
                 <li className="list-item"><strong>Performance Monitoring:</strong> Tracking app stability, crash rates, and technical performance</li>
-                <li className="list-item"><strong>Aggregate Reporting:</strong> Creating anonymized, aggregate statistics about emergency response patterns</li>
-                <li className="list-item"><strong>A/B Testing:</strong> Testing platform modifications to optimize emergency alert delivery and response coordination</li>
-                <li className="list-item"><strong>Trend Analysis:</strong> Understanding geographic and temporal patterns in emergency alert usage</li>
+                <li className="list-item"><strong>Aggregate Reporting:</strong> Creating anonymized, aggregate statistics about community response patterns</li>
+                <li className="list-item"><strong>A/B Testing:</strong> Testing platform modifications to optimize community alert delivery and response coordination</li>
+                <li className="list-item"><strong>Trend Analysis:</strong> Understanding geographic and temporal patterns in community alert usage</li>
               </ul>
 
               <h3 className="subsection-title">5.6 Legal and Compliance</h3>
@@ -716,7 +719,7 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">5.8 Prohibited Uses</h3>
               <p className="paragraph">
-                LekkerClap explicitly does NOT use your personal data for: - Selling personal information for commercial purposes (except as required by law or with explicit opt-in consent) - Profiling for discriminatory purposes - Automated decision-making that produces legal or similarly significant effects (except for identity verification) - Tracking behavioral patterns for non-emergency purposes - Third-party advertising without separate explicit consent - Any purpose incompatible with the emergency services nature of the platform
+                LekkerClap explicitly does NOT use your personal data for: - Selling personal information for commercial purposes (except as required by law or with explicit opt-in consent) - Profiling for discriminatory purposes - Automated decision-making that produces legal or similarly significant effects (except for identity verification) - Tracking behavioral patterns for non-alert purposes - Third-party advertising without separate explicit consent - Any purpose incompatible with the community neighborhood-watch nature of the platform
               </p>
             </section>
 
@@ -725,7 +728,7 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">6.1 Principle of Minimization</h3>
               <p className="paragraph">
-                LekkerClap adheres to the data minimization principle and collects only the personal data that is: - Relevant and necessary for the stated purposes - Proportionate to the service being provided - Not excessive relative to the emergency response function
+                LekkerClap adheres to the data minimization principle and collects only the personal data that is: - Relevant and necessary for the stated purposes - Proportionate to the service being provided - Not excessive relative to the community alert function
               </p>
               <p className="paragraph">
                 We do not collect: - Political opinions or religious beliefs - Trade union membership - Genetic data (except biometric data necessary for identity verification and authentication) - Sexual orientation or gender identity (except where voluntarily provided for emergency contact purposes) - Criminal convictions or offense data (except as required by law) - Financial account information (except payment method for service fees)
@@ -737,7 +740,7 @@ export default function PrivacyPolicy(){
               </p>
               <ul className="list">
                 <li className="list-item">
-                  Location data is collected solely for emergency alert routing and will not be used for:
+                  Location data is collected solely for community alert routing and will not be used for:
                   <ul className="list" style={{marginLeft: '2rem'}}>
                     <li className="list-item">Behavioral tracking or profiling</li>
                     <li className="list-item">Commercial advertising or marketing (except as needed to notify you of platform features)</li>
@@ -777,7 +780,7 @@ export default function PrivacyPolicy(){
                 <strong>Identity Verification:</strong> - Didit – Third-party identity verification and age confirmation provider - Processes: Government ID data, biometric facial recognition data, name, date of birth - Purpose: Age verification, identity confirmation, fraud prevention - Legal basis: Contract (service provision) and legitimate interest (security) - Didit's Privacy Policy: [Link to Didit Privacy Policy] - Data retention: As specified in Didit's terms (typically 30-90 days post-verification)
               </p>
               <p className="paragraph">
-                <strong>Emergency Services Integration:</strong> - Emergency Dispatch Centers and Emergency Services – Official emergency response agencies - Processes: Your precise location, alert content, phone number, emergency details - Purpose: Emergency dispatch and response coordination - Legal basis: Vital interests (life-saving emergency response) and contract performance - Data retention: Per emergency services record retention requirements (typically 18-36 months) - Note: These transfers are mandated by law and occur without requiring additional consent
+                <strong>Community Alert Notification:</strong> - Nearby LekkerClap community neighborhood-watch members and your designated contacts - Processes: Your precise location, alert content, name, and phone number - Purpose: Pinging and notifying nearby community members so they may choose to respond - Legal basis: Contract performance and vital interests (life or physical safety) - Note: LekkerClap is not connected to, and does not transmit alerts to, any emergency services, emergency dispatch centre, or official emergency response agency. If you need professional help, you must contact emergency services directly.
               </p>
               <p className="paragraph">
                 <strong>Cloud Infrastructure and Data Hosting:</strong> - Cloud Service Providers (e.g., AWS, Google Cloud, Azure) - Processes: All platform data including account information, location history, alert records - Purpose: Secure data storage, backup, platform infrastructure - Legal basis: Contract and legitimate interest (service delivery and security) - Geographic location: Data may be stored in multiple jurisdictions - Sub-processor notification: Provided as required
@@ -803,7 +806,7 @@ export default function PrivacyPolicy(){
                 <li className="list-item"><strong>Law Enforcement and Government Requests:</strong> We will disclose information in response to lawful warrants, subpoenas, court orders, or government agency requests, as required by law</li>
                 <li className="list-item"><strong>Legal Claims and Proceedings:</strong> We may disclose information when necessary to defend against legal claims, enforce our Terms of Service, or protect our rights and property</li>
                 <li className="list-item"><strong>Public Safety:</strong> We may disclose information when we believe in good faith that disclosure is necessary to prevent harm, fraud, or illegal activity</li>
-                <li className="list-item"><strong>Emergency Response:</strong> Location and alert information is automatically shared with emergency services without delay when a distress alert is activated</li>
+                <li className="list-item"><strong>Community Alerts:</strong> Location and alert information is automatically shared with nearby community neighborhood-watch members without delay when an alert is activated (not with emergency services)</li>
               </ul>
               <p className="paragraph">
                 When legally permitted, we will provide notice to the affected data subject of any legal disclosure request, unless prohibited by law.
@@ -811,10 +814,10 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">7.3 Mandatory Disclosures</h3>
               <p className="paragraph">
-                <strong>Emergency Services Sharing:</strong> When you activate a distress alert, the following information is automatically transmitted to nearby LekkerClap users and authorized emergency services: - Your precise GPS location - Approximate location - Name and contact information - Phone number - Alert content and description - Device information - Alert timestamp
+                <strong>Community Alert Sharing:</strong> When you activate an alert, the following information is automatically transmitted to nearby LekkerClap community neighborhood-watch members and your designated contacts (and not to any emergency services): - Your precise GPS location - Approximate location - Name and contact information - Phone number - Alert content and description - Device information - Alert timestamp
               </p>
               <p className="paragraph">
-                This sharing occurs without requiring additional consent because it is the fundamental function of the Platform and is based on lawful bases: (1) performance of contract, (2) vital interests, and (3) legitimate interest in emergency response coordination.
+                This sharing occurs without requiring additional consent because it is the fundamental function of the Platform and is based on lawful bases: (1) performance of contract, (2) vital interests, and (3) legitimate interest in community alert coordination.
               </p>
 
               <h3 className="subsection-title">7.4 Conditional Disclosures (Requiring Your Consent)</h3>
@@ -837,7 +840,7 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">7.6 Aggregated and De-identified Data</h3>
               <p className="paragraph">
-                LekkerClap may use and disclose aggregated, de-identified, or anonymized data without restriction. This includes: - Statistical reports on emergency response patterns - Geographic heat maps of emergency alert concentrations - Temporal trends in emergency alert usage - Aggregate demographic information (without identifying individuals)
+                LekkerClap may use and disclose aggregated, de-identified, or anonymized data without restriction. This includes: - Statistical reports on community response patterns - Geographic heat maps of community alert concentrations - Temporal trends in community alert usage - Aggregate demographic information (without identifying individuals)
               </p>
               <p className="paragraph">
                 Such data cannot identify you and is not considered personal data.
@@ -869,7 +872,7 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">8.1 Data Retention Schedule</h3>
               <p className="paragraph">
-                LekkerClap retains personal data only for as long as necessary to provide the service, comply with legal obligations, resolve disputes, and enforce agreements. Precise location data associated with emergency alerts is retained for a limited period and then securely deleted.
+                LekkerClap retains personal data only for as long as necessary to provide the service, comply with legal obligations, resolve disputes, and enforce agreements. Precise location data associated with alerts is retained for a limited period and then securely deleted.
               </p>
 
               <div className="table-container">
@@ -893,9 +896,9 @@ export default function PrivacyPolicy(){
                       <td>Analytics and service improvement</td>
                     </tr>
                     <tr>
-                      <td>Precise Alert Location (during emergency)</td>
+                      <td>Precise Alert Location (during active alert)</td>
                       <td>30–90 days max</td>
-                      <td>Incident investigation and emergency coordination</td>
+                      <td>Incident investigation and community alert coordination</td>
                     </tr>
                     <tr>
                       <td>Alert Metadata (non-identifiable)</td>
@@ -980,7 +983,7 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">8.3 Exceptions to Deletion</h3>
               <p className="paragraph">
-                We may retain personal data even after deletion request if retention is: - Legally required by law, regulation, or court order - Necessary for law enforcement cooperation in response to lawful governmental request - Required for emergency services to maintain incident records - Necessary to enforce our agreements or protect legal rights - Necessary to prevent fraud or security incidents - Required for backup and archive purposes (typically 90 days maximum) - Necessary for legitimate interests that override your privacy interest
+                We may retain personal data even after deletion request if retention is: - Legally required by law, regulation, or court order - Necessary for law enforcement cooperation in response to lawful governmental request - Required to maintain alert incident records for community-safety and legal purposes - Necessary to enforce our agreements or protect legal rights - Necessary to prevent fraud or security incidents - Required for backup and archive purposes (typically 90 days maximum) - Necessary for legitimate interests that override your privacy interest
               </p>
               <p className="paragraph">
                 For minors, we retain parental consent records until the child reaches the age of majority in their jurisdiction, or as required by COPPA.
@@ -1021,16 +1024,16 @@ export default function PrivacyPolicy(){
                 <strong>What Parents/Guardians Must Know:</strong>
               </p>
               <p className="paragraph">
-                Parents and guardians have the right to: - Review all personal data collected about the child - Request correction or deletion of the child's data - Withdraw parental consent at any time (which will result in account suspension) - Prevent future collection of data from the child - Know that emergency alerts involving the child may be shared with emergency services
+                Parents and guardians have the right to: - Review all personal data collected about the child - Request correction or deletion of the child's data - Withdraw parental consent at any time (which will result in account suspension) - Prevent future collection of data from the child - Know that alerts involving the child may be shared with nearby community neighborhood-watch members
               </p>
               <p className="paragraph">
-                <strong>Data Processed from Minors:</strong> For users aged 13-15, we minimize data collection to: - Basic account information (name, email, phone, date of birth) - Identity verification data (via Didit - for age confirmation only) - Location data (only when distress alert is active) - Emergency alert content and response data - Communications with responders (only emergency-related)
+                <strong>Data Processed from Minors:</strong> For users aged 13-15, we minimize data collection to: - Basic account information (name, email, phone, date of birth) - Identity verification data (via Didit - for age confirmation only) - Location data (only when an alert is active) - Alert content and response data - Communications with responding community members (only alert-related)
               </p>
               <p className="paragraph">
                 <strong>Prohibited for Minors:</strong> - Marketing cookies and behavioral tracking (beyond service-essential analytics) - Third-party data sharing for advertising or profiling - Sale of personal information - Long-term location history outside active alerts
               </p>
               <p className="paragraph">
-                <strong>Parental Consent Revocation:</strong> Parents may withdraw consent at any time by contacting privacy@lekkeclap.com with written request. Upon withdrawal: - The child's account will be deactivated within 24 hours - All non-essential data will be deleted within 30 days - Emergency alert records may be retained to fulfill legal obligations
+                <strong>Parental Consent Revocation:</strong> Parents may withdraw consent at any time by contacting privacy@lekkeclap.com with written request. Upon withdrawal: - The child's account will be deactivated within 24 hours - All non-essential data will be deleted within 30 days - Alert records may be retained to fulfill legal obligations
               </p>
 
               <h3 className="subsection-title">9.3 For Users Aged 16+ (Without Parental Consent in Most Jurisdictions)</h3>
@@ -1049,7 +1052,7 @@ export default function PrivacyPolicy(){
                 <strong>Parental Rights Under COPPA:</strong> - Right to review data collected about the child - Right to request data deletion - Right to withdraw consent and deactivate child's account - Right to opt-out of future collection
               </p>
               <p className="paragraph">
-                <strong>Safe Harbor Notice:</strong> We may ask to collect certain data that would normally require parental consent but is exempt under COPPA, such as: - Email address to send password reset (one-time use exceptions) - Name and phone for emergency contact purposes only - Location data for emergency alert purposes only
+                <strong>Safe Harbor Notice:</strong> We may ask to collect certain data that would normally require parental consent but is exempt under COPPA, such as: - Email address to send password reset (one-time use exceptions) - Name and phone for emergency contact purposes only - Location data for community alert purposes only
               </p>
 
               <h3 className="subsection-title">9.5 Contact Information for Parental Inquiries</h3>
@@ -1081,10 +1084,10 @@ export default function PrivacyPolicy(){
                 <strong>4. Right to Restrict Processing</strong> - Right: You can request that we limit how we process your personal data - How to Exercise: Submit a "Restriction Request" to privacy@lekkeclap.com - Timeline: We will acknowledge within a reasonable timeframe and apply restrictions while investigating
               </p>
               <p className="paragraph">
-                <strong>5. Right to Object</strong> - Right: You can object to processing of your personal data based on legitimate interest - How to Exercise: Submit an "Objection" to privacy@lekkeclap.com - Timeline: We must stop processing within a reasonable timeframe unless we demonstrate compelling legitimate interests - Exception: You cannot object to processing necessary for contract performance or emergency response
+                <strong>5. Right to Object</strong> - Right: You can object to processing of your personal data based on legitimate interest - How to Exercise: Submit an "Objection" to privacy@lekkeclap.com - Timeline: We must stop processing within a reasonable timeframe unless we demonstrate compelling legitimate interests - Exception: You cannot object to processing necessary for contract performance or community alert delivery
               </p>
               <p className="paragraph">
-                <strong>6. Right to Withdraw Consent</strong> - Right: If we process your data based on consent, you can withdraw that consent at any time - How to Exercise: Adjust settings in your account or email privacy@lekkeclap.com - Effect: Withdrawal does not affect processing before withdrawal; future processing will stop - Exception: Withdrawal does not affect processing necessary for emergency response
+                <strong>6. Right to Withdraw Consent</strong> - Right: If we process your data based on consent, you can withdraw that consent at any time - How to Exercise: Adjust settings in your account or email privacy@lekkeclap.com - Effect: Withdrawal does not affect processing before withdrawal; future processing will stop - Exception: Withdrawal does not affect processing necessary for community alert delivery
               </p>
 
               <h3 className="subsection-title">10.2 GDPR Rights (for EU/EEA Users)</h3>
@@ -1113,7 +1116,7 @@ export default function PrivacyPolicy(){
                 <strong>7. Rights Related to Automated Decision-Making (Article 22)</strong> - Right: You have the right not to be subject to decisions based solely on automated processing that produces legal or similarly significant effects - How It Applies: Our identity verification (Didit) is an automated decision, but you have the right to human review - How to Exercise: Contact privacy@lekkeclap.com to request human review of any automated verification decision - Exception: Automated decisions are permitted if necessary for contract performance or lawful processing with safeguards
               </p>
               <p className="paragraph">
-                <strong>8. Right to Withdraw Consent</strong> - Right: If we process your data based on consent, you can withdraw that consent at any time - How to Exercise: Adjust settings in your account or email privacy@lekkeclap.com - Effect: Withdrawal does not affect processing before withdrawal; future processing will stop - Exception: Withdrawal does not affect processing necessary for emergency response
+                <strong>8. Right to Withdraw Consent</strong> - Right: If we process your data based on consent, you can withdraw that consent at any time - How to Exercise: Adjust settings in your account or email privacy@lekkeclap.com - Effect: Withdrawal does not affect processing before withdrawal; future processing will stop - Exception: Withdrawal does not affect processing necessary for community alert delivery
               </p>
 
               <h3 className="subsection-title">10.3 CCPA/CPRA Rights (for California Residents)</h3>
@@ -1124,16 +1127,16 @@ export default function PrivacyPolicy(){
                 <strong>1. Right to Know/Access (CCPA Section 1798.100)</strong> - Right: You can request what personal information we have collected, the sources, purposes of collection, and categories of third parties with whom we share it - How to Exercise: Submit a "Verifiable Consumer Request" using email to privacy@lekkeclap.com. - Verification: We will verify your identity by matching information you provide against records we hold - Timeline: We will respond within 45 days (may extend 45 additional days with notice) - Format: We will provide information in a portable, readily useable format - Cost: Free of charge for two requests per calendar year
               </p>
               <p className="paragraph">
-                <strong>2. Right to Delete (CPRA Section 1798.105)</strong> - Right: You can request deletion of personal information we have collected - How to Exercise: Submit a "Deletion Request" with "REQUEST TO DELETE" in subject via email or online form - Timeline: We will respond within 45 days (may extend 45 additional days) - Exceptions: We may retain data if necessary for service delivery, security, legal obligations, or emergency response - Third-Party Notification: We will inform service providers to delete the data, unless deletion is not possible - Verification: We will verify your identity before processing deletion - Cost: Free of charge
+                <strong>2. Right to Delete (CPRA Section 1798.105)</strong> - Right: You can request deletion of personal information we have collected - How to Exercise: Submit a "Deletion Request" with "REQUEST TO DELETE" in subject via email or online form - Timeline: We will respond within 45 days (may extend 45 additional days) - Exceptions: We may retain data if necessary for service delivery, security, legal obligations, or community alert delivery - Third-Party Notification: We will inform service providers to delete the data, unless deletion is not possible - Verification: We will verify your identity before processing deletion - Cost: Free of charge
               </p>
               <p className="paragraph">
                 <strong>3. Right to Correct (CPRA Section 1798.100(d))</strong> - Right: You can request correction of inaccurate personal information - How to Exercise: Submit a "Correction Request" via privacy@lekkeclap.com - Timeline: We will respond within 45 days (may extend 45 additional days) - Verification: We will verify identity and assess reasonableness of request - Cost: Free of charge
               </p>
               <p className="paragraph">
-                <strong>4. Right to Opt-Out of Sale/Sharing (CCPA Sections 1798.120, CPRA Section 1798.120)</strong> - Right: You can opt-out of the sale or sharing of your personal information to third parties - How to Exercise: Use the "Do Not Sell or Share My Personal Information" link in your account settings or on our homepage - Current Status: LekkerClap does not sell personal information. Any future sale would require explicit notice and your opt-out mechanism. We do share limited data with emergency services as part of core service delivery. - Timeline: We will honor opt-out requests within 45 days - Cost: Free of charge
+                <strong>4. Right to Opt-Out of Sale/Sharing (CCPA Sections 1798.120, CPRA Section 1798.120)</strong> - Right: You can opt-out of the sale or sharing of your personal information to third parties - How to Exercise: Use the "Do Not Sell or Share My Personal Information" link in your account settings or on our homepage - Current Status: LekkerClap does not sell personal information. Any future sale would require explicit notice and your opt-out mechanism. We do share limited data with nearby community members as part of core service delivery (community alert notifications); we do not share it with emergency services. - Timeline: We will honor opt-out requests within 45 days - Cost: Free of charge
               </p>
               <p className="paragraph">
-                <strong>5. Right to Limit Use and Disclosure (CPRA Section 1798.121)</strong> - Right: You can limit how we use and disclose sensitive personal information (such as location data, biometric data) - How to Exercise: Submit a "Limitation Request" to privacy@lekkeclap.com specifying which categories of sensitive data you wish to limit - Timeline: We will respond within 45 days - Limitations: We will use sensitive data only for service provision, legal compliance, security, fraud prevention, and short-term analytics - Exception: We cannot limit location data sharing for emergency alert purposes, as this is core to service delivery
+                <strong>5. Right to Limit Use and Disclosure (CPRA Section 1798.121)</strong> - Right: You can limit how we use and disclose sensitive personal information (such as location data, biometric data) - How to Exercise: Submit a "Limitation Request" to privacy@lekkeclap.com specifying which categories of sensitive data you wish to limit - Timeline: We will respond within 45 days - Limitations: We will use sensitive data only for service provision, legal compliance, security, fraud prevention, and short-term analytics - Exception: We cannot limit location data sharing for community alert purposes, as this is core to service delivery
               </p>
               <p className="paragraph">
                 <strong>6. Right to Non-Discrimination (CCPA Section 1798.125, CPRA Section 1798.125)</strong> - Right: You will not face discrimination (including denial of service, different pricing, or lower quality) for exercising your privacy rights - How We Comply: We provide the same service quality and pricing to all users regardless of privacy choices - Exception: We may offer different service levels if different data collection enables different features (this is not discrimination)
@@ -1223,7 +1226,7 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">11.3 Data Protection Impact Assessments</h3>
               <p className="paragraph">
-                LekkerClap conducts Data Protection Impact Assessments (DPIAs) for high-risk processing activities, including: - Location data collection and emergency alert routing - Identity verification and biometric processing - Automated decision-making (verification algorithms) - Cross-border data transfers - Integration with emergency services
+                LekkerClap conducts Data Protection Impact Assessments (DPIAs) for high-risk processing activities, including: - Location data collection and community alert routing - Identity verification and biometric processing - Automated decision-making (verification algorithms) - Cross-border data transfers - Community alert notification to nearby members
               </p>
               <p className="paragraph">
                 These DPIAs evaluate: - Lawfulness of processing - Necessity and proportionality of data collection - Rights and freedom impacts - Risk mitigation measures - Third-party involvement
@@ -1334,7 +1337,7 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">14.1 Links to Third-Party Websites</h3>
               <p className="paragraph">
-                The LekkerClap Platform may contain links to third-party websites, applications, and services that are not operated by us, including: - Emergency services websites - Payment processors - Identity verification providers (Didit) - Cloud service providers - Social media platforms
+                The LekkerClap Platform may contain links to third-party websites, applications, and services that are not operated by us, including: - Mapping and reverse-geocoding services - Payment processors - Identity verification providers (Didit) - Cloud service providers - Social media platforms
               </p>
               <p className="paragraph">
                 We are not responsible for the privacy practices of third-party sites. We encourage you to review their privacy policies before providing personal information.
@@ -1345,7 +1348,7 @@ export default function PrivacyPolicy(){
                 When you integrate third-party services with your LekkerClap account: - You authorize LekkerClap to share limited data as necessary for the integration - The third party's terms and privacy policy apply to their use of data - You remain responsible for reviewing third-party privacy disclosures
               </p>
               <p className="paragraph">
-                Common Integrations: - Emergency Services APIs: Location and alert data shared automatically for dispatch - Payment Processors: Payment method and transaction information - Contact Sync: Permission to access device contacts (if you grant permission)
+                Common Integrations: - Mapping & Geocoding APIs: Used to render alert locations on a map for notified community members - Payment Processors: Payment method and transaction information - Contact Sync: Permission to access device contacts (if you grant permission). LekkerClap does not integrate with, or share alert data with, any emergency services API or dispatch system.
               </p>
 
               <h3 className="subsection-title">14.3 Social Media Integration</h3>
@@ -1525,13 +1528,13 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">18.2 Data Residency and Storage Locations</h3>
               <p className="paragraph">
-                <strong>Primary Data Storage Locations:</strong> - Primary region: [Specify - e.g., United States, European Union, South Africa] - Backup regions: [Specify others] - Emergency services data: May be replicated to optimize response
+                <strong>Primary Data Storage Locations:</strong> - Primary region: [Specify - e.g., United States, European Union, South Africa] - Backup regions: [Specify others] - Alert data: May be replicated to optimize community notification delivery
               </p>
               <p className="paragraph">
                 You have the right to: - Know where your data is stored and processed - Request that data be stored in a specific jurisdiction (if feasible) - Request deletion rather than transfer
               </p>
               <p className="paragraph">
-                <strong>Data Location Considerations:</strong> - Some features may require data processing in multiple locations (emergency response) - We implement privacy controls and encryption regardless of storage location - Data may transit through multiple jurisdictions for backup and recovery purposes
+                <strong>Data Location Considerations:</strong> - Some features may require data processing in multiple locations (community alert notification) - We implement privacy controls and encryption regardless of storage location - Data may transit through multiple jurisdictions for backup and recovery purposes
               </p>
             </section>
 
@@ -1612,7 +1615,7 @@ export default function PrivacyPolicy(){
 
               <h3 className="subsection-title">20.4 Acknowledgment</h3>
               <p className="paragraph">
-                By using LekkerClap, you acknowledge that you have: - Read and understood this Privacy Policy - Agreed to the collection and processing of personal data as described - Understood your rights and how to exercise them - Consented to emergency alert functionality, including location sharing with emergency services
+                By using LekkerClap, you acknowledge that you have: - Read and understood this Privacy Policy - Agreed to the collection and processing of personal data as described - Understood your rights and how to exercise them - Consented to community alert functionality, including location sharing with nearby community neighborhood-watch members (and understood that LekkerClap is not connected to, and does not share alerts with, emergency services)
               </p>
             </section>
 
@@ -1668,11 +1671,11 @@ export default function PrivacyPolicy(){
                       <td>[Location]</td>
                     </tr>
                     <tr>
-                      <td>Emergency Services</td>
-                      <td>Location, alert content, contact info</td>
-                      <td>Emergency dispatch</td>
-                      <td>N/A</td>
-                      <td>Regional</td>
+                      <td>Mapping / Reverse-Geocoding Provider</td>
+                      <td>Approximate coordinates (no account identifiers)</td>
+                      <td>Render alert location on a map for notified community members</td>
+                      <td>[Link]</td>
+                      <td>[Location]</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1713,7 +1716,7 @@ export default function PrivacyPolicy(){
                       <td>Location sharing during alerts</td>
                       <td>Contract + Vital Interests</td>
                       <td>Precise GPS location</td>
-                      <td>Essential for emergency response</td>
+                      <td>Essential for community alert notification</td>
                     </tr>
                     <tr>
                       <td>Identity verification</td>
@@ -1775,7 +1778,7 @@ export default function PrivacyPolicy(){
             <section className="section" style={{borderTop: '3px solid #b91c1c', paddingTop: '2rem'}}>
               <h2 className="section-title">CONCLUSION</h2>
               <p className="paragraph">
-                LekkerClap is committed to protecting your privacy and complying with all applicable data protection laws globally, including POPIA, GDPR, CCPA/CPRA, and others. We recognize that trust is essential to our mission of providing life-saving emergency alert services.
+                LekkerClap is committed to protecting your privacy and complying with all applicable data protection laws globally, including POPIA, GDPR, CCPA/CPRA, and others. We recognize that trust is essential to our mission of providing a community neighborhood-watch alert service.
               </p>
               <p className="paragraph">
                 You are already 80% POPIA-aligned by design because we: - Minimise location use (temporary, alert-scoped only) - Scope precise data to incidents - Give users control (privacy zones, settings, consent) - Do not sell data - Implement appropriate security measures

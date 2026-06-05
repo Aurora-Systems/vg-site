@@ -366,7 +366,7 @@ export default function TermsAndConditions(){
                   <span className="definition-term">"Alert"</span> means a notification created and transmitted through the Platform by a user to communicate information to nearby LekkerClap users and their chosen emergency contacts.
                 </li>
                 <li className="list-item">
-                  <span className="definition-term">"Emergency Services"</span> means authorized public and private emergency response entities, including police, fire, medical, search and rescue, and other first responders.
+                  <span className="definition-term">"Emergency Services"</span> means external authorized public and private emergency response entities, including police, fire, medical, search and rescue, and other first responders. LekkerClap is not an Emergency Service and is not connected to, integrated with, or able to dispatch any Emergency Services; you must contact them directly.
                 </li>
                 <li className="list-item">
                   <span className="definition-term">"Intellectual Property"</span> or <span className="definition-term">"IP"</span> means all patents, trademarks, service marks, copyrights, trade secrets, and other intellectual property rights, whether registered or unregistered, associated with the Platform and its content.
@@ -381,7 +381,7 @@ export default function TermsAndConditions(){
                   <span className="definition-term">"False Alarm"</span> means an Alert where no actual emergency exists, or where the Alert cannot be verified as involving a genuine situation requiring response, as determined by applicable standards.
                 </li>
                 <li className="list-item">
-                  <span className="definition-term">"Responder"</span> means any LekkerClap user who responds to an Alert, or an authorized emergency services representative.
+                  <span className="definition-term">"Responder"</span> or <span className="definition-term">"Community Member"</span> means any LekkerClap user or designated contact who chooses to respond to an Alert. Responders are volunteer community neighborhood-watch members; they are not employed, dispatched, or controlled by LekkerClap.
                 </li>
                 <li className="list-item">
                   <span className="definition-term">"Platform"</span> means the LekkerClap mobile application, website, and all related services, features, and functionality.
@@ -573,10 +573,10 @@ export default function TermsAndConditions(){
                 </p>
               </div>
               <p className="paragraph">
-                By creating, uploading, or transmitting any User Content through the Platform, you grant LekkerClap and its affiliates: - Perpetual, worldwide, royalty-free rights to use, reproduce, modify, adapt, distribute, and display your User Content - The right to sublicense these rights to partners, service providers, and emergency responders - The right to create derivative works based on your User Content - The right to use your User Content for research, improvement, and analysis of the Platform
+                By creating, uploading, or transmitting any User Content through the Platform, you grant LekkerClap and its affiliates: - Perpetual, worldwide, royalty-free rights to use, reproduce, modify, adapt, distribute, and display your User Content - The right to sublicense these rights to partners, service providers, and community members responding to Alerts - The right to create derivative works based on your User Content - The right to use your User Content for research, improvement, and analysis of the Platform
               </p>
               <p className="paragraph">
-                This ownership structure allows LekkerClap to: - Ensure content integrity and prevent misuse - Maintain historical records for verification and investigation - Share verified information with authorized emergency services - Improve the Platform based on usage patterns - Protect against false claims regarding content creation
+                This ownership structure allows LekkerClap to: - Ensure content integrity and prevent misuse - Maintain historical records for verification and investigation - Route alerts and verified information to nearby community neighborhood-watch members - Improve the Platform based on usage patterns - Protect against false claims regarding content creation
               </p>
 
               <h3 className="subsection-title">9.2 Your Representations</h3>
@@ -630,7 +630,7 @@ export default function TermsAndConditions(){
                 A "False Alarm" is an Alert created where no actual emergency or genuine situation exists, or where the Alert is determined to be unverified, misleading, or not requiring response under reasonable circumstances.
               </p>
               <p className="paragraph">
-                LekkerClap monitors for False Alarms through: - User reporting and feedback - Pattern analysis and detection - Emergency services verification - Community verification - Responder feedback
+                LekkerClap monitors for False Alarms through: - User reporting and feedback - Pattern analysis and detection - Automated and manual review - Community verification - Responder feedback
               </p>
 
               <h3 className="subsection-title">11.2 False Alarm Penalty Structure</h3>
@@ -695,7 +695,7 @@ export default function TermsAndConditions(){
 
               <h3 className="subsection-title">11.6 Administrative Fees</h3>
               <p className="paragraph">
-                In addition to penalties, users who create recurring False Alarms may be charged administrative fees to cover: - Investigation costs - Emergency services response costs - Platform moderation and review - Legal and compliance expenses
+                In addition to penalties, users who create recurring False Alarms may be charged administrative fees to cover: - Investigation costs - Community response and coordination costs - Platform moderation and review - Legal and compliance expenses
               </p>
             </section>
 
@@ -712,7 +712,7 @@ export default function TermsAndConditions(){
 
               <h3 className="subsection-title">12.2 Suspension or Termination by LekkerClap</h3>
               <p className="paragraph">
-                LekkerClap may suspend or terminate your account immediately and without prior notice if: - You violate this Agreement - You repeatedly create False Alarms - Your account is used for illegal activity - You engage in harassment or abuse of other users - Your conduct violates emergency services protocols - We reasonably believe continued access poses a safety or legal risk - You fail to pay assessed penalties or fees - We are required to do so by law or court order
+                LekkerClap may suspend or terminate your account immediately and without prior notice if: - You violate this Agreement - You repeatedly create False Alarms - Your account is used for illegal activity - You engage in harassment or abuse of other users - Your conduct violates Platform safety or community alert protocols - We reasonably believe continued access poses a safety or legal risk - You fail to pay assessed penalties or fees - We are required to do so by law or court order
               </p>
 
               <h3 className="subsection-title">12.3 Consequences of Termination</h3>
@@ -749,11 +749,11 @@ export default function TermsAndConditions(){
               <ul className="list">
                 <li className="list-item"><strong>Response to Alerts:</strong> We do not guarantee that any Alert will be received, read, understood, or acted upon</li>
                 <li className="list-item"><strong>Response Times:</strong> We do not guarantee any response time and are not liable for delays</li>
-                <li className="list-item"><strong>Responder Quality:</strong> We do not control the quality, competence, or adequacy of responses from other users or emergency services</li>
+                <li className="list-item"><strong>Responder Quality:</strong> We do not control the quality, competence, or adequacy of responses from other users or community members</li>
                 <li className="list-item"><strong>Emergency Services Response:</strong> We do not control emergency services and are not liable for their actions or inactions</li>
                 <li className="list-item"><strong>Personal Safety:</strong> We do not guarantee your safety, security, or the resolution of emergencies</li>
                 <li className="list-item"><strong>Injuries or Deaths:</strong> We are not liable for personal injury, death, or property damage related to Alerts or responses (or lack thereof)</li>
-                <li className="list-item"><strong>Third-Party Services:</strong> We are not liable for failures of third-party services, including telecommunications, cloud providers, or emergency dispatch systems</li>
+                <li className="list-item"><strong>Third-Party Services:</strong> We are not liable for failures of third-party services, including telecommunications, cloud providers, or mapping/location services</li>
                 <li className="list-item"><strong>Platform Availability:</strong> We do not guarantee uninterrupted access to the Platform</li>
                 <li className="list-item"><strong>Delivery of Notifications:</strong> We do not guarantee delivery of notifications to intended recipients</li>
                 <li className="list-item"><strong>Data Accuracy:</strong> We do not guarantee the accuracy, completeness, or timeliness of information on the Platform</li>
@@ -833,14 +833,14 @@ export default function TermsAndConditions(){
               <h3 className="subsection-title">14.1 Indemnification by User</h3>
               <div className="warning-box">
                 <p className="paragraph">
-                  <strong>You agree to indemnify, defend (with attorneys reasonably acceptable to LekkerClap), and hold harmless LekkerClap and its:</strong> - Officers, directors, employees, and agents - Service providers and contractors - Partners and affiliates - Emergency services responders
+                  <strong>You agree to indemnify, defend (with attorneys reasonably acceptable to LekkerClap), and hold harmless LekkerClap and its:</strong> - Officers, directors, employees, and agents - Service providers and contractors - Partners and affiliates - Community members responding to Alerts
                 </p>
               </div>
               <p className="paragraph">
                 <strong>From and against all:</strong> - Claims, damages, and losses (including reasonable attorney's fees) - Judgments, settlements, and penalties - Costs and expenses - Fines and regulatory penalties
               </p>
               <p className="paragraph">
-                <strong>Arising from or related to:</strong> - Your use of the Platform in violation of this Agreement - Your violation of any applicable law or regulation - Your User Content or communications - Infringement of third-party rights (intellectual property, privacy, publicity, etc.) by your content - False, fraudulent, or misleading information you provide - Claims by third parties regarding your account or conduct - Your failure to comply with emergency responder instructions - Your actions or inactions related to Alerts you created or responded to
+                <strong>Arising from or related to:</strong> - Your use of the Platform in violation of this Agreement - Your violation of any applicable law or regulation - Your User Content or communications - Infringement of third-party rights (intellectual property, privacy, publicity, etc.) by your content - False, fraudulent, or misleading information you provide - Claims by third parties regarding your account or conduct - Your actions or inactions related to Alerts you created or responded to
               </p>
 
               <h3 className="subsection-title">14.2 Indemnification Procedures</h3>
@@ -873,7 +873,7 @@ export default function TermsAndConditions(){
 
               <h3 className="subsection-title">15.2 Third-Party Integrations</h3>
               <p className="paragraph">
-                If the Platform integrates with third-party services (e.g., emergency dispatch systems, cloud providers), you acknowledge that: - These integrations are provided "as is" - LekkerClap does not control these services - Failures in third-party services may impact Platform functionality - LekkerClap is not liable for failures of third-party services
+                If the Platform integrates with third-party services (e.g., mapping/location providers, cloud providers), you acknowledge that: - These integrations are provided "as is" - LekkerClap does not control these services - Failures in third-party services may impact Platform functionality - LekkerClap is not liable for failures of third-party services
               </p>
             </section>
 
@@ -1056,7 +1056,7 @@ export default function TermsAndConditions(){
 
               <h3 className="subsection-title">B.1 Data Processing</h3>
               <p className="paragraph">
-                Users who create Alerts containing personal data (names, phone numbers, location data) acknowledge that: - The data is processed according to our Privacy Policy - Data may be shared with emergency services or responders - Data is retained according to our retention schedule - Users are responsible for obtaining necessary consent to include others' data in Alerts
+                Users who create Alerts containing personal data (names, phone numbers, location data) acknowledge that: - The data is processed according to our Privacy Policy - Data may be shared with nearby community members responding to Alerts - Data is retained according to our retention schedule - Users are responsible for obtaining necessary consent to include others' data in Alerts
               </p>
 
               <h3 className="subsection-title">B.2 GDPR Compliance (for EU Users)</h3>

@@ -16,7 +16,7 @@ const SECTIONS: Section[] = [
   { id: "s2",  number: "02", title: "Grant of License" },
   { id: "s3",  number: "03", title: "Scope of License" },
   { id: "s4",  number: "04", title: "License Restrictions" },
-  { id: "s5",  number: "05", title: "Location Services & Emergency Dispatch", starred: true },
+  { id: "s5",  number: "05", title: "Location Services & Community Alerts", starred: true },
   { id: "s6",  number: "06", title: "Ownership & Intellectual Property" },
   { id: "s7",  number: "07", title: "Third-Party Software & Open Source" },
   { id: "s8",  number: "08", title: "Permitted Uses" },
@@ -402,7 +402,7 @@ export default function EULAPage() {
               </div>
               <h1 className="hero-title">LekkerClap<br />License Agreement</h1>
               {/* <p className="hero-subtitle">
-                Including Location Services &amp; Emergency Dispatch Disclosure<br />
+                Including Location Services &amp; Community Alert Disclosure<br />
                 Required under Apple App Store Guideline 5.1.5
               </p> */}
               <div className="hero-meta-grid">
@@ -426,11 +426,13 @@ export default function EULAPage() {
             </div>
 
             <AlertBox variant="danger">
-              IMPORTANT NOTICE — LOCATION SERVICES &amp; EMERGENCY DISPATCH: This application uses
-              location-based APIs to transmit your precise GPS coordinates to emergency responders.
-              By installing or using LekkerClap you explicitly consent to the collection, processing,
-              and transmission of your real-time location data for emergency dispatch purposes.
-              See Section 05 for full details.
+              IMPORTANT NOTICE — LOCATION SERVICES &amp; COMMUNITY ALERTS: LekkerClap is a community
+              neighborhood-watch tool. It is NOT an emergency service and is NOT connected to any
+              emergency services system (police, fire, ambulance, 911/112, or any official dispatch).
+              The Application uses location and background-location services solely to ping and notify
+              nearby community neighborhood-watch members when you raise an alert. By installing or using
+              LekkerClap you consent to the collection, processing, and transmission of your location
+              data for this community-notification purpose only. See Section 05 for full details.
             </AlertBox>
 
             {/* ── S1: Definitions ─────────────────────────────────────────── */}
@@ -445,9 +447,9 @@ export default function EULAPage() {
               '"Precise Location" — GPS-derived coordinates accurate to approximately 10 metres.',
               '"Approximate Location" — location data with city-block-level accuracy (roughly 3 km radius) or coarser.',
               '"Background Location" — Location Data collected while the Application is not in the device foreground.',
-              '"Distress Alert" — an emergency notification transmitted by the User through the Application, including Location Data, dispatched to Emergency Responders.',
-              '"Emergency Responder" — any person or service receiving a Distress Alert (professional services, community first-responders, designated contacts).',
-              '"Emergency Dispatch System" — the technical infrastructure used to receive, process, and route Distress Alerts.',
+              '"Alert" or "Distress Alert" — a notification raised by the User through the Application, including Location Data, that is sent only to nearby community members and the User\'s designated contacts. It is not transmitted to any emergency service or official dispatch.',
+              '"Community Member" or "Neighborhood-Watch Member" — a fellow LekkerClap user, or a contact designated by the User, who may receive an Alert. LekkerClap does not employ, dispatch, or control these members; they are volunteers who choose whether and how to respond.',
+              '"Community Alert Network" — the technical infrastructure LekkerClap uses to receive, process, and route Alerts to nearby community members. It is an internal notification system only and is not connected to, and does not relay alerts to, any emergency services or official emergency dispatch system.',
               '"Authorized User" — You and any family/household member using the Application on a device you own or control.',
               '"Confidential Information" — all non-public information regarding the Licensed Application, including source code, trade secrets, and business information.',
             ]} />
@@ -458,10 +460,10 @@ export default function EULAPage() {
             <P>Subject to this EULA, Licensor grants you a personal, non-exclusive, non-transferable, revocable license to:</P>
             <UL items={[
               "Download, install, and use the Licensed Application on devices you own or control;",
-              "Use the Licensed Application for its intended emergency-response and distress-alert purposes;",
+              "Use the Licensed Application for its intended community-alert and neighborhood-watch notification purposes;",
               "Access services and features provided through the Application;",
               "Receive Updates (patches and bug fixes) at no additional cost;",
-              "Use the Application for personal, non-commercial emergency response purposes.",
+              "Use the Application for personal, non-commercial community-safety and neighborhood-watch purposes.",
             ]} />
             <SubHeading>2.2 Scope of License</SubHeading>
             <P>This license is limited to personal, non-commercial use on devices you own, in accordance with documentation and applicable laws. It does NOT include commercial use, redistribution, sublicensing, or use beyond authorized geographic regions.</P>
@@ -490,40 +492,46 @@ export default function EULAPage() {
               "Use the Application for commercial or profit-making purposes;",
               "Transmit false, misleading, or hoax distress alerts;",
               "Use the Application for illegal purposes or to harm others;",
-              "Misuse location data or emergency services features.",
+              "Misuse location data or community alert features.",
             ]} />
             <SubHeading>4.2 Monitoring and Enforcement</SubHeading>
             <P>Licensor reserves the right to monitor use for compliance, use technical measures to enforce restrictions, and disable or terminate the Application if violations are detected.</P>
 
             {/* ── S5: LOCATION SERVICES (FLAGSHIP) ────────────────────────── */}
-            <SectionHeading id="s5" number="05" title="Location Services, Emergency Dispatch & Apple Guideline 5.1.5 Compliance" />
+            <SectionHeading id="s5" number="05" title="Location Services, Community Alerts & Apple Guideline 5.1.5 Compliance" />
             <AlertBox variant="info">
               This section constitutes the primary Location Services disclosure required under Apple
               App Store Review Guideline 5.1.5. It describes in full how location data is collected,
-              used, transmitted, and retained in connection with emergency dispatch.
+              used, transmitted, and retained in connection with community alerts.
+            </AlertBox>
+            <AlertBox variant="danger">
+              LekkerClap is NOT an emergency service and is NOT connected to, integrated with, or
+              monitored by any emergency services system — including police, fire, ambulance, 911/112,
+              or any official emergency dispatch. Location Data is used solely to ping and notify nearby
+              community neighborhood-watch members and your designated contacts when you raise an Alert.
             </AlertBox>
 
             <SubHeading>5.1 Purpose of Location Data Collection</SubHeading>
-            <P>LekkerClap is designed exclusively for emergency response and personal safety. Location Data is collected for these specific, limited purposes:</P>
+            <P>LekkerClap is designed to support community awareness and neighborhood-watch safety. Location Data is collected for these specific, limited purposes:</P>
             <UL items={[
-              "Transmitting a User's precise GPS coordinates to the Emergency Dispatch System when a Distress Alert is activated;",
-              "Enabling Emergency Responders to identify the physical location of an individual in distress with sufficient accuracy to render timely assistance;",
-              "Displaying nearby registered responders or community members who can provide immediate aid;",
-              "Providing navigation guidance to Emergency Responders traveling toward the individual in distress;",
-              "Generating location-stamped records of Distress Alerts for post-incident review and legal/regulatory compliance;",
-              "Allowing continuous location tracking during an active emergency session to update responders as the User moves.",
+              "Transmitting a User's precise GPS coordinates to the Community Alert Network when an Alert is raised, so that nearby community members can be notified;",
+              "Enabling nearby community neighborhood-watch members to see the approximate location of a User who has raised an Alert, so they may choose to offer assistance;",
+              "Displaying nearby registered community members who may be able to respond;",
+              "Helping community members orient toward a User who has raised an Alert;",
+              "Generating location-stamped records of Alerts for post-incident review and legal/regulatory compliance;",
+              "Allowing location updates during an active Alert session to keep notified community members informed as the User moves.",
             ]} />
             <AlertBox variant="danger">
-              Location Data is NOT collected or used for advertising, profiling, marketing analytics, or any purpose unrelated to emergency response.
+              Location Data is NOT collected or used for advertising, profiling, marketing analytics, or any purpose unrelated to community alert notifications. LekkerClap does not forward Location Data to any emergency service or official dispatch system.
             </AlertBox>
 
             <SubHeading>5.2 Types of Location Data Collected</SubHeading>
             <H4>5.2.1 Precise (Foreground) Location</H4>
             <P>When the Application is in the foreground, it requests access to Precise Location via GPS and/or Wi-Fi positioning, accurate to approximately 3–10 metres. This is the primary data transmitted during a Distress Alert.</P>
             <H4>5.2.2 Background Location</H4>
-            <P>Once a Distress Alert is activated, the Application continues collecting Precise Location in the background to provide real-time updates to Emergency Responders. Background Location collection ceases immediately when the alert is cancelled or resolved. The Application will NOT collect Background Location outside of an active emergency session without separate, explicit consent.</P>
+            <P>Once an Alert is raised, the Application continues collecting Precise Location in the background to provide updates to the nearby community neighborhood-watch members who have been notified. Background Location collection ceases immediately when the Alert is cancelled or resolved. The Application will NOT collect Background Location outside of an active Alert session without separate, explicit consent.</P>
             <H4>5.2.3 Approximate Location</H4>
-            <P>For non-emergency features (e.g., displaying nearby community responders), the Application may use Approximate Location where Precise Location is not strictly necessary.</P>
+            <P>For non-alert features (e.g., displaying nearby community members), the Application may use Approximate Location where Precise Location is not strictly necessary.</P>
             <H4>5.2.4 Location Metadata</H4>
             <P>In addition to raw coordinates, the Application transmits the following metadata during a Distress Alert:</P>
             <UL items={[
@@ -534,25 +542,25 @@ export default function EULAPage() {
               "Source of location fix (GPS, Wi-Fi, cellular, or fused).",
             ]} />
 
-            <SubHeading>5.3 Technical Architecture: How Emergency Services Receive Your Location</SubHeading>
-            <P>The following describes the technical flow when you activate a Distress Alert:</P>
+            <SubHeading>5.3 Technical Architecture: How Community Members Receive Your Location</SubHeading>
+            <P>The following describes the technical flow when you raise an Alert:</P>
             <StepBlock step="1" title="Location Acquisition">
               <P>The Application immediately requests a high-accuracy location fix from the device's platform location APIs — CoreLocation on iOS, FusedLocationProviderClient on Android — using the highest accuracy level available ("Best" / "HIGH_ACCURACY"), combining GPS satellite data with Wi-Fi and cellular positioning.</P>
             </StepBlock>
             <StepBlock step="2" title="Secure Transmission">
-              <P>Acquired coordinates (latitude, longitude, accuracy radius, altitude, timestamp, heading) are transmitted via encrypted HTTPS (TLS 1.3) to the LekkerClap Emergency Dispatch System. The payload is digitally signed and includes your authenticated account identifier to prevent spoofing.</P>
+              <P>Acquired coordinates (latitude, longitude, accuracy radius, altitude, timestamp, heading) are transmitted via encrypted HTTPS (TLS 1.3) to the LekkerClap Community Alert Network. The payload is digitally signed and includes your authenticated account identifier to prevent spoofing.</P>
             </StepBlock>
-            <StepBlock step="3" title="Dispatch System Processing">
-              <P>The Emergency Dispatch System validates the authentication signature and immediately routes the Distress Alert to nearby registered Emergency Responders within a configurable radius, community first-responders in the area, and any pre-designated emergency contacts.</P>
+            <StepBlock step="3" title="Alert Network Processing">
+              <P>The Community Alert Network validates the authentication signature and immediately routes the Alert to nearby registered community neighborhood-watch members within a configurable radius and any pre-designated contacts you have chosen. The Alert is not routed to any emergency service or official dispatch.</P>
             </StepBlock>
-            <StepBlock step="4" title="Responder Location Display">
-              <P>Emergency Responders receive the User's Precise Location via the LekkerClap Responder Application or web interface, showing a map with GPS coordinates and accuracy circle, a reverse-geocoded street address, real-time location updates if Background Location is active, and a breadcrumb trail of location history during the active session.</P>
+            <StepBlock step="4" title="Community Member Location Display">
+              <P>Notified community members receive the User's Precise Location via the LekkerClap Application or web interface, showing a map with GPS coordinates and accuracy circle, a reverse-geocoded street address, location updates if Background Location is active, and a breadcrumb trail of location history during the active session.</P>
             </StepBlock>
-            <StepBlock step="5" title="Integration with Professional Emergency Services">
-              <P>Where technically and legally feasible, and where the User has consented, the Application may relay location data to professional emergency services (police, fire, ambulance) in NG911/NG112 compliant format. Where no direct integration exists, responders are shown precise GPS coordinates to relay when contacting professional services.</P>
+            <StepBlock step="5" title="No Integration with Emergency Services">
+              <P>LekkerClap does NOT relay location data to, or integrate with, any professional emergency service (police, fire, ambulance) or official dispatch system, and it does not operate in any NG911/NG112 or equivalent format. If professional help is needed, the User or a notified community member must contact emergency services directly. LekkerClap simply pings and alerts nearby community members.</P>
             </StepBlock>
             <AlertBox variant="info">
-              Evidence of capability: LekkerClap's Emergency Dispatch System receives and identifies the precise location of individuals in distress. Location coordinates are transmitted in real-time, rendered on a map for responding parties, and reverse-geocoded to a physical address to facilitate both community and professional emergency response.
+              What the Application does: LekkerClap's Community Alert Network receives and identifies the location of a User who has raised an Alert. Location coordinates are transmitted to nearby community neighborhood-watch members, rendered on a map, and reverse-geocoded to a physical address so that those community members may choose to offer assistance. LekkerClap does not provide, dispatch, or coordinate professional emergency response.
             </AlertBox>
 
             <SubHeading>5.4 Location Permission Requirements and User Consent</SubHeading>
@@ -564,7 +572,7 @@ export default function EULAPage() {
             <PermissionTag label="ACCESS_FINE_LOCATION" req="Required for Distress Alert transmission. Requested upon first alert activation." />
             <PermissionTag label="ACCESS_COARSE_LOCATION" req="Used as fallback and for non-emergency proximity features." />
             <PermissionTag label="ACCESS_BACKGROUND_LOCATION" req="Required for live location updates during an active alert. Android 10+ requires separate grant in device settings; the Application guides you through this process." />
-            <P>You may modify or revoke location permissions at any time in device Settings. Revoking location permissions will prevent the Application from transmitting your location during a Distress Alert and significantly reduce emergency response effectiveness.</P>
+            <P>You may modify or revoke location permissions at any time in device Settings. Revoking location permissions will prevent the Application from transmitting your location during an Alert and significantly reduce the effectiveness of community alert notifications.</P>
 
             <SubHeading>5.5 Location Data Retention and Deletion</SubHeading>
             <UL items={[
@@ -579,13 +587,13 @@ export default function EULAPage() {
             <UL items={[
               "Apple CoreLocation (iOS) — platform location services subject to Apple's Privacy Policy;",
               "Google FusedLocationProviderClient (Android) — platform location services subject to Google's Privacy Policy;",
-              "Reverse Geocoding API — converts GPS coordinates to human-readable addresses for Emergency Responders;",
-              "Mapping Services — renders the User's location on a map for Emergency Responders.",
+              "Reverse Geocoding API — converts GPS coordinates to human-readable addresses for notified community members;",
+              "Mapping Services — renders the User's location on a map for notified community members.",
             ]} />
 
             <SubHeading>5.7 Location Accuracy Limitations</SubHeading>
             <AlertBox variant="danger">
-              LOCATION ACCURACY DISCLAIMER: The accuracy of location data depends on device hardware, satellite signal availability, network conditions, and physical environment. Indoor locations, underground environments, or areas with weak GPS signals may result in reduced accuracy. The Application transmits the most accurate data available from the device, but Licensor cannot guarantee that transmitted location will be sufficient for Emergency Responders to locate the User.
+              LOCATION ACCURACY DISCLAIMER: The accuracy of location data depends on device hardware, satellite signal availability, network conditions, and physical environment. Indoor locations, underground environments, or areas with weak GPS signals may result in reduced accuracy. The Application transmits the most accurate data available from the device, but Licensor cannot guarantee that transmitted location will be sufficient for notified community members to locate the User.
             </AlertBox>
             <UL items={[
               "GPS: typically 3–10 m outdoors; may degrade to 50–100 m or more indoors;",
@@ -608,9 +616,9 @@ export default function EULAPage() {
             <SubHeading>5.9 Location Data and Law Enforcement</SubHeading>
             <P>In accordance with applicable law, Licensor may be required to disclose Location Data and Distress Alert records to law enforcement or regulatory authorities. Licensor will comply with lawful requests and, where permitted, will notify affected users. Distress Alert records are retained for 36 months specifically to support such cooperation.</P>
 
-            <SubHeading>5.10 No Replacement for Direct Emergency Services</SubHeading>
+            <SubHeading>5.10 Not an Emergency Service — Always Contact Emergency Services Directly</SubHeading>
             <AlertBox variant="danger">
-              CRITICAL SAFETY DISCLAIMER: LekkerClap is designed to supplement — not replace — direct contact with professional emergency services. In any life-threatening emergency, ALWAYS contact your local emergency services directly (911 in the USA, 999 in the UK, 999/112 in Zimbabwe). LekkerClap does NOT guarantee that a Distress Alert will be received, acknowledged, or acted upon. The Application may be unavailable due to technical failures or network outages. Do not rely solely on this Application in an emergency.
+              CRITICAL SAFETY DISCLAIMER: LekkerClap is a community neighborhood-watch alert tool. It is NOT an emergency service and is NOT connected to police, fire, ambulance, 911/112, or any official emergency dispatch system. An Alert only pings and notifies nearby community members — it does not summon professional responders. In any life-threatening emergency, ALWAYS contact your local emergency services directly (911 in the USA, 999 in the UK, 999/112 in Zimbabwe). LekkerClap does NOT guarantee that an Alert will be received, acknowledged, or acted upon by any community member. The Application may be unavailable due to technical failures or network outages. Do not rely solely on this Application in an emergency.
             </AlertBox>
 
             {/* ── S6: Ownership & IP ──────────────────────────────────────── */}
@@ -630,9 +638,9 @@ export default function EULAPage() {
             <SectionHeading id="s8" number="08" title="Permitted Uses" />
             <P>You are permitted to use the Licensed Application for:</P>
             <UL items={[
-              "Transmitting genuine Distress Alerts during real emergencies;",
-              "Responding to Distress Alerts from other users;",
-              "Coordinating emergency response with other users and responders;",
+              "Raising genuine Alerts during real situations requiring community awareness or assistance;",
+              "Responding to Alerts from other community members;",
+              "Coordinating with other community members and your designated contacts in response to Alerts;",
               "Installing Updates as provided by Licensor;",
               "Contacting Licensor with questions or feedback.",
             ]} />
@@ -642,7 +650,7 @@ export default function EULAPage() {
             <SubHeading>Illegal and Harmful Activities</SubHeading>
             <P>You shall NOT use the Application for illegal purposes, threats, harassment, fraud, stalking, child exploitation, terrorism, or intellectual property violations.</P>
             <SubHeading>Distress Alert Abuse</SubHeading>
-            <P>You shall NOT submit false, misleading, or hoax Distress Alerts; test the Application without authorization; use alerts to harass responders; or engage in "swatting." Violation may result in license termination, ban, disclosure to law enforcement, and civil or criminal liability.</P>
+            <P>You shall NOT raise false, misleading, or hoax Alerts; test the Application without authorization; use alerts to harass other community members; or engage in "swatting." Violation may result in license termination, ban, disclosure to law enforcement, and civil or criminal liability.</P>
             <SubHeading>Location Data Misuse</SubHeading>
             <P>You shall NOT collect, scrape, sell, or share Location Data from other users; access other users' location without authorization; or use Location Data for surveillance or stalking.</P>
             <SubHeading>Security and System Integrity</SubHeading>
@@ -669,7 +677,7 @@ export default function EULAPage() {
             <SectionHeading id="s13" number="13" title="Limitations of Liability" />
             <P caps>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, LICENSOR PROVIDES THE LICENSED APPLICATION ON AN "AS-IS" AND "AS-AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED.</P>
             <AlertBox variant="danger">
-              LICENSOR DOES NOT GUARANTEE THAT DISTRESS ALERTS WILL BE RECEIVED, PROCESSED, OR ACTED UPON. LICENSOR DOES NOT GUARANTEE RESPONSE TIMES OR THE QUALITY OF EMERGENCY RESPONSE. LICENSOR DOES NOT GUARANTEE THE ACCURACY OF LOCATION DATA TRANSMITTED. LICENSOR DOES NOT ASSUME LIABILITY FOR EMERGENCY RESPONDER ACTIONS OR FAILURES.
+              LICENSOR DOES NOT GUARANTEE THAT ALERTS WILL BE RECEIVED, PROCESSED, OR ACTED UPON BY ANY COMMUNITY MEMBER. LICENSOR DOES NOT GUARANTEE RESPONSE TIMES OR THE QUALITY OF ANY COMMUNITY RESPONSE. LICENSOR DOES NOT GUARANTEE THE ACCURACY OF LOCATION DATA TRANSMITTED. LEKKERCLAP IS NOT AN EMERGENCY SERVICE, IS NOT CONNECTED TO ANY EMERGENCY DISPATCH SYSTEM, AND DOES NOT ASSUME LIABILITY FOR THE ACTIONS OR FAILURES OF ANY COMMUNITY MEMBER OR THIRD PARTY.
             </AlertBox>
             <P caps>TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR'S TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID TO LICENSOR IN THE PAST 12 MONTHS, OR USD 1,000 IF NO FEE WAS PAID. LICENSOR SHALL NOT BE LIABLE FOR INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR PUNITIVE DAMAGES.</P>
             <P>Exceptions: The liability cap does not apply to gross negligence, willful misconduct, fraud, death or severe bodily injury caused by Licensor's negligence, or data protection law violations.</P>
@@ -707,7 +715,7 @@ export default function EULAPage() {
 
             {/* ── S18: Geographic ──────────────────────────────────────────── */}
             <SectionHeading id="s18" number="18" title="Geographic Restrictions" />
-            <P>The Application may not be available in all jurisdictions. Certain features (emergency services integration, payment methods, parental consent requirements) vary by region. By downloading the Application, you represent that you are in a jurisdiction where it is permitted and you are not violating local laws.</P>
+            <P>The Application may not be available in all jurisdictions. Certain features (community alert availability, payment methods, parental consent requirements) vary by region. By downloading the Application, you represent that you are in a jurisdiction where it is permitted and you are not violating local laws.</P>
 
             {/* ── S19: Modifications ───────────────────────────────────────── */}
             <SectionHeading id="s19" number="19" title="Modifications to the EULA" />
@@ -754,10 +762,10 @@ export default function EULAPage() {
             <UL items={[
               "Read and understood this entire EULA, including the Location Services disclosure in Section 05;",
               "Agreed to be bound by all terms and conditions;",
-              "Understood the limitations of liability and disclaimers, including those regarding location accuracy and emergency response;",
+              "Understood the limitations of liability and disclaimers, including those regarding location accuracy and community response;",
               "Acknowledged that the Application is licensed, not sold;",
               "Consented to the collection and processing of Location Data and personal data as described in Section 05 and the Privacy Policy;",
-              "Understood that this Application supplements — but does not replace — direct emergency services;",
+              "Understood that this Application is a community neighborhood-watch alert tool, is not an emergency service, is not connected to any emergency dispatch system, and does not replace direct contact with emergency services;",
               "Confirmed your age eligibility and parental consent (if applicable);",
               "Agreed to comply with all applicable laws;",
               "Assumed all risks associated with using the Application.",
