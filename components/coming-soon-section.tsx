@@ -9,15 +9,15 @@ export function ComingSoonSection() {
             <div className="max-w-6xl mx-auto">
                 <div className="glass-panel p-8 md:p-12 rounded-3xl text-center">
                     <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                        Coming Soon to IOS, available on <span className="text-primary glow-text">Playstore</span>
+                        Now available on the <span className="text-primary glow-text">App Store</span> and <span className="text-primary glow-text">Play Store</span>
                     </h2>
                     <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-                        LekkerClap will be available on your favorite platforms. Join the waitlist to be notified when we launch!
+                        LekkerClap is live on iOS and Android. Download it now and start connecting with your community.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
                         {/* App Store Badge */}
-                        <div className="opacity-60 grayscale cursor-not-allowed selection:bg-transparent">
+                        <div className="cursor-pointer selection:bg-transparent" onClick={() => window.open("https://apps.apple.com/us/app/lekkerclap/id6759859578", "_blank")}>
                             <Image
                                 src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                                 alt="Download on the App Store"
@@ -31,7 +31,7 @@ export function ComingSoonSection() {
                         </div>
 
                         {/* Google Play Store Badge */}
-                        <div className="selection:bg-transparent" onClick={() => window.open("https://play.google.com/store/apps/details?id=attribute.xyz&pcampaignid=web_share", "_blank")}>
+                        <div className="cursor-pointer selection:bg-transparent" onClick={() => window.open("https://play.google.com/store/apps/details?id=attribute.xyz&pcampaignid=web_share", "_blank")}>
                             <Image
                                 src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                                 alt="Get it on Google Play"

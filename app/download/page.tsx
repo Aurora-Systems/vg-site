@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 
 export const metadata: Metadata = {
   title: "Download LekkerClap",
-  description: "Download LekkerClap on Android via Google Play or join the waitlist for iOS.",
+  description: "Download LekkerClap now on the App Store for iOS or Google Play for Android.",
 }
 
 export default function DownloadPage() {
