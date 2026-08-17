@@ -10,7 +10,6 @@ const navLinks = [
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
   { label: "Download", href: "/download" },
-  { label: "Waitlist", href: "#waitlist" },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -64,7 +63,7 @@ export function Navbar() {
           {/* CTA Button - Desktop */}
           <div className="hidden md:block">
             <Button asChild className="glow-border">
-              <Link href="#waitlist">Join Waitlist</Link>
+              <Link href="/download">Get the App</Link>
             </Button>
           </div>
 
@@ -89,8 +88,8 @@ export function Navbar() {
                 </Link>
               ))}
               <Button asChild className="w-full glow-border mt-2">
-                <Link href="#waitlist" onClick={() => setIsOpen(false)}>
-                  Join Waitlist
+                <Link href="/download" onClick={() => setIsOpen(false)}>
+                  Get the App
                 </Link>
               </Button>
             </div>

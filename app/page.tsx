@@ -2,7 +2,6 @@ import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
 import { ComingSoonSection } from "@/components/coming-soon-section"
 import { FeaturesSection } from "@/components/features-section"
-import { WaitlistSection } from "@/components/waitlist-section"
 import { PricingSection } from "@/components/pricing-section"
 import { ContactSection } from "@/components/contact-section"
 import { PreviousLivesSection } from "@/components/previous-lives-section"
@@ -16,7 +15,6 @@ export default function Home() {
         <ComingSoonSection />
         <FeaturesSection />
         <PreviousLivesSection />
-        <WaitlistSection />
         <PricingSection />
         <ContactSection />
         <Footer />

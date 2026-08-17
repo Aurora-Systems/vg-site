@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 
 export function ComingSoonSection() {
     return (
@@ -15,7 +14,7 @@ export function ComingSoonSection() {
                         LekkerClap is live on iOS and Android. Download it now and start connecting with your community.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                         {/* App Store Badge */}
                         <div className="cursor-pointer selection:bg-transparent" onClick={() => window.open("https://apps.apple.com/us/app/lekkerclap/id6759859578", "_blank")}>
                             <Image
@@ -41,14 +40,6 @@ export function ComingSoonSection() {
                             />
                         </div>
                     </div>
-
-                    <Button
-                        size="lg"
-                        className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-xl glow-border"
-                        onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
-                    >
-                        Join Waitlist
-                    </Button>
                 </div>
             </div>
         </section>

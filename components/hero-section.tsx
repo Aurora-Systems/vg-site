@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
@@ -28,11 +29,11 @@ export function HeroSection() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button
+                  asChild
                   size="lg"
                   className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-xl glow-border"
-                  onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
                 >
-                  Join the Waitlist
+                  <Link href="/download">Download the App</Link>
                 </Button>
                 <Button
                   variant="outline"
