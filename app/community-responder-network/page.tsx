@@ -7,7 +7,7 @@ const page = ukPages["community-responder-network"]
 export const metadata: Metadata = {
   title: page.metaTitle,
   description: page.metaDescription,
-  alternates: { canonical: "https://lekkerclap.com/uk/community-responder-network" },
+  alternates: { canonical: "https://lekkerclap.com/community-responder-network" },
 }
 
 export default function CommunityResponderNetworkPage() {

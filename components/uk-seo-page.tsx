@@ -180,7 +180,7 @@ export function UkSeoPage({ slug }: { slug: string }) {
               .map((link) => (
                 <Link
                   key={link.slug}
-                  href={`/uk/${link.slug}`}
+                  href={`/${link.slug}`}
                   className="glass-card px-5 py-2.5 rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all"
                 >
                   {link.label}

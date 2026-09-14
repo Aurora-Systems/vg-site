@@ -7,7 +7,7 @@ const page = ukPages["lone-worker-safety"]
 export const metadata: Metadata = {
   title: page.metaTitle,
   description: page.metaDescription,
-  alternates: { canonical: "https://lekkerclap.com/uk/lone-worker-safety" },
+  alternates: { canonical: "https://lekkerclap.com/lone-worker-safety" },
 }
 
 export default function LoneWorkerSafetyPage() {

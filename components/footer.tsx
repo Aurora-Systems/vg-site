@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin } from "lucide-react"
+import { ukPageLinks } from "@/lib/uk-pages"
 
 const links = [
   { label: "Download", href: "/download" },
@@ -56,6 +57,19 @@ export function Footer() {
               © {new Date().getFullYear()} LekkerClap. All rights reserved.
             </p>
           </div>
+
+          {/* Safety guides */}
+          <nav className="mt-6 pt-6 border-t border-border/30 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            {ukPageLinks.map((link) => (
+              <Link
+                key={link.slug}
+                href={`/${link.slug}`}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>
