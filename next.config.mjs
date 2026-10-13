@@ -16,6 +16,12 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      // Exhibition demo of the dashboard organisations get (public/org-demo.html, fictional data)
+      { source: "/org-demo", destination: "/org-demo.html" },
+    ]
+  },
 }
 
 export default nextConfig
