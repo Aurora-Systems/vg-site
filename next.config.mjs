@@ -20,6 +20,8 @@ const nextConfig = {
     return [
       // Exhibition demo of the dashboard organisations get (public/org-demo.html, fictional data)
       { source: "/org-demo", destination: "/org-demo.html" },
+      // Demo account prepared for a presentation to the Zimbabwe Republic Police (public/demo/zrp.html, fictional data)
+      { source: "/demo/zrp", destination: "/demo/zrp.html" },
     ]
   },
 }

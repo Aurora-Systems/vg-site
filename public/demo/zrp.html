@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Demo account prepared by LekkerClap for the Zimbabwe Republic Police: community SOS alerts across Bulawayo. Fictional data.">
+<link rel="icon" href="/favicon.ico">
+<title>LekkerClap Bulawayo Command Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: brand bar with the demo notice, section tabs, then summary tiles, live alerts beside
+   the Bulawayo map, four analysis panels, stations, incidents, officers and monthly reports.
+   Dark only, like the LekkerClap admin portal this mirrors. */
+:root {
+  --ink: #0a0a0c;
+  --panel: #131316;
+  --panel-2: #1b1b20;
+  --line: #27272e;
+  --muted: #8e8e99;
+  --text: #ececef;
+  --brand: #c40202;
+  --brand-hi: #ff4a45;
+  --brand-soft: rgba(196, 2, 2, 0.16);
+  --ok: #2fc46b;
+  --ok-soft: rgba(47, 196, 107, 0.14);
+  --warn: #f2a516;
+  --warn-soft: rgba(242, 165, 22, 0.15);
+  --duress: #b39cff;
+  --duress-soft: rgba(179, 156, 255, 0.16);
+  --police: #7fb2ff;
+  --police-soft: rgba(127, 178, 255, 0.15);
+  --display: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--ink); color: var(--text); }
+body { margin: 0; font-family: var(--body); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--brand-hi); outline-offset: 2px; border-radius: 6px; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* Bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 1000; background: rgba(10, 10, 12, 0.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.notice { background: var(--warn-soft); border-bottom: 1px solid rgba(242, 165, 22, .3); color: #f6c86a; font-size: 12.5px; }
+.notice-in { max-width: 1320px; margin: 0 auto; padding: 7px 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.notice b { color: var(--warn); letter-spacing: .08em; text-transform: uppercase; font-size: 11.5px; }
+.top-in { max-width: 1320px; margin: 0 auto; padding: 12px 20px 0; display: flex; flex-direction: column; gap: 10px; }
+.top-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.mark { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.mark-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--brand); display: grid; place-items: center; position: relative; flex: none; }
+.mark-dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--brand); opacity: .45; }
+.mark-dot span { font: 800 12px/1 var(--display); font-stretch: 112%; color: #fff; }
+.mark-name { font: 700 15px/1.1 var(--display); font-stretch: 105%; }
+.mark-name small { display: block; font: 500 11px/1.3 var(--body); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.org-chip { display: flex; align-items: center; gap: 10px; padding: 5px 12px 5px 6px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.org-chip b { font-weight: 650; display: block; line-height: 1.2; }
+.org-chip small { color: var(--muted); font-size: 11.5px; display: block; line-height: 1.2; }
+.org-logo { width: 40px; height: 40px; border-radius: 9px; object-fit: cover; flex: none; }
+.org-logo-text { width: 34px; height: 34px; border-radius: 50%; background: #13306b; color: #ffd75e; display: grid; place-items: center; font: 800 11px/1 var(--display); flex: none; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; white-space: nowrap; text-transform: uppercase; }
+.pill-demo { background: var(--warn); color: #1a1205; }
+.spacer { flex: 1; }
+.range { color: var(--muted); font-size: 13px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--panel-2); border-radius: 8px; padding: 8px 14px; cursor: pointer; font-weight: 600; font-size: 13px; }
+.btn:hover { border-color: #3a3a44; }
+.btn-sos { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn-sos:hover { background: #a80000; border-color: #a80000; }
+.btn-sos:disabled { opacity: .55; cursor: default; }
+.btn-ghost { background: transparent; }
+.tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.tabs a { padding: 9px 12px 11px; text-decoration: none; color: var(--muted); font-weight: 600; font-size: 13.5px; border-bottom: 2px solid transparent; white-space: nowrap; }
+.tabs a:hover { color: var(--text); }
+.tabs a.on { color: var(--text); border-bottom-color: var(--brand); }
+.live-count { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; margin-left: 6px; border-radius: 9px; background: var(--brand); color: #fff; font-size: 11px; font-family: var(--mono); }
+
+/* Page */
+main { max-width: 1320px; margin: 0 auto; padding: 22px 20px 56px; display: flex; flex-direction: column; gap: 22px; }
+section { scroll-margin-top: 150px; }
+.head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+h1 { margin: 0; font: 750 30px/1.1 var(--display); font-stretch: 112%; letter-spacing: -.01em; text-wrap: balance; }
+.sub { margin: 6px 0 0; color: var(--muted); max-width: 70ch; }
+h2 { margin: 0; font: 700 15px/1.3 var(--display); font-stretch: 104%; }
+.eyebrow { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .09em; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; min-width: 0; }
+.card-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px 0; flex-wrap: wrap; }
+.card-b { padding: 14px 16px 16px; }
+.card-note { color: var(--muted); font-size: 12.5px; }
+
+.tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.tile { padding: 14px 16px 15px; display: flex; flex-direction: column; gap: 6px; }
+.tile .val { font: 750 30px/1.05 var(--display); font-stretch: 92%; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.tile .val small { font-size: 15px; color: var(--muted); font-weight: 600; margin-left: 2px; }
+.tile .det { color: var(--muted); font-size: 12.5px; }
+.tile.hot .val { color: var(--brand-hi); }
+.delta-good { color: var(--ok); }
+.delta-bad { color: var(--warn); }
+
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 12px; }
+.live-list { display: flex; flex-direction: column; gap: 10px; }
+.live { border: 1px solid rgba(255, 74, 69, .35); background: linear-gradient(180deg, rgba(196, 2, 2, .12), rgba(196, 2, 2, .03)); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.live.done { border-color: rgba(47, 196, 107, .35); background: linear-gradient(180deg, rgba(47, 196, 107, .10), rgba(47, 196, 107, .02)); }
+.live-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.live-who { font-weight: 650; font-size: 15px; }
+.live-where { color: var(--muted); font-size: 12.5px; }
+.timer { font: 500 20px/1 var(--mono); font-variant-numeric: tabular-nums; color: var(--brand-hi); }
+.live.done .timer { color: var(--ok); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.steps li { font-size: 11.5px; color: var(--muted); padding-top: 8px; border-top: 3px solid var(--line); line-height: 1.3; }
+.steps li.ok { color: var(--text); border-top-color: var(--brand-hi); }
+.live.done .steps li.ok { border-top-color: var(--ok); }
+.steps b { display: block; font-family: var(--mono); font-weight: 500; font-size: 12px; }
+.live-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+.empty { color: var(--muted); padding: 22px 6px; text-align: center; border: 1px dashed var(--line); border-radius: 10px; }
+
+.map { width: 100%; height: 460px; border-radius: 8px; background: #0e0e12; z-index: 0; }
+.leaflet-container { background: #0e0e12; font: inherit; }
+.leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9) saturate(0.35); }
+.leaflet-bar { border: 1px solid var(--line) !important; box-shadow: none !important; }
+.leaflet-bar a { background: var(--panel-2); color: var(--text); border-bottom-color: var(--line); }
+.leaflet-bar a:hover { background: #24242b; color: var(--text); }
+.leaflet-control-attribution { background: rgba(10, 10, 12, 0.78) !important; color: var(--muted) !important; font-size: 10.5px; }
+.leaflet-control-attribution a { color: #b8b8c2 !important; }
+.lc-tip { background: var(--panel-2); border: 1px solid var(--line); color: var(--text); border-radius: 8px; padding: 8px 10px; font: 12px/1.45 var(--body); box-shadow: 0 8px 24px rgba(0, 0, 0, .45); }
+.lc-tip::before { display: none; }
+.station-pin { background: var(--police); border: 2px solid #0e0e12; border-radius: 3px; }
+.live-pin { position: relative; }
+.live-pin .dot { position: absolute; inset: 0; border-radius: 50%; background: var(--brand-hi); border: 2px solid #0e0e12; }
+.live-pin .ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--brand-hi); animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse { from { transform: scale(.6); opacity: .9; } to { transform: scale(3.2); opacity: 0; } }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.legend i.sq { border-radius: 2px; }
+
+.quad { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.chart .grid { stroke: #24242b; stroke-width: 1; }
+.chart .axis { fill: var(--muted); font: 10.5px var(--mono); }
+.chart .lbl { fill: var(--text); font: 600 11px var(--mono); }
+.chart .bar { fill: #5a1a1a; }
+.chart .bar.last { fill: var(--brand); }
+.chart .line { fill: none; stroke: var(--brand-hi); stroke-width: 2.25; stroke-linejoin: round; stroke-linecap: round; }
+.chart .area { fill: rgba(255, 74, 69, .10); }
+.chart .target { stroke: var(--ok); stroke-width: 1.25; stroke-dasharray: 4 4; }
+.chart .target-lbl { fill: var(--ok); font: 600 10.5px var(--mono); }
+.chart .dot { fill: var(--brand-hi); stroke: var(--panel); stroke-width: 2; }
+.types { display: flex; flex-direction: column; gap: 11px; }
+.type-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) 44px; align-items: center; gap: 10px; font-size: 13px; }
+.type-bar { height: 10px; border-radius: 5px; background: var(--panel-2); overflow: hidden; }
+.type-bar i { display: block; height: 100%; border-radius: 5px; background: var(--brand); }
+.type-row .num { text-align: right; color: var(--muted); }
+.callout { margin-top: 14px; padding: 10px 12px; border-radius: 8px; background: var(--panel-2); color: var(--muted); font-size: 12.5px; }
+.callout b { color: var(--text); font-weight: 600; }
+
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; padding: 10px 16px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 11px 16px; border-bottom: 1px solid #1f1f25; vertical-align: middle; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr.click { cursor: pointer; }
+tbody tr.click:hover td, tbody tr.hl td { background: #18181d; }
+tr.fresh td { animation: fresh 2.4s ease-out; }
+@keyframes fresh { from { background: rgba(255, 74, 69, .18); } to { background: transparent; } }
+.r { text-align: right; }
+.who b { display: block; font-weight: 600; }
+.who span { color: var(--muted); font-size: 12px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.c-ok { background: var(--ok-soft); color: var(--ok); }
+.c-warn { background: var(--warn-soft); color: var(--warn); }
+.c-mute { background: var(--panel-2); color: var(--muted); }
+.c-duress { background: var(--duress-soft); color: var(--duress); }
+.c-live { background: var(--brand-soft); color: var(--brand-hi); }
+.c-police { background: var(--police-soft); color: var(--police); }
+.slow { color: var(--warn); }
+.split-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: var(--panel-2); min-width: 90px; }
+.split-bar i { display: block; height: 100%; }
+
+.members-grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 12px; align-items: start; }
+.tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.search { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; color: var(--text); font: inherit; font-size: 13px; width: 220px; max-width: 100%; }
+.search::placeholder { color: #6a6a75; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { background: transparent; border: 0; padding: 7px 11px; font-size: 12.5px; font-weight: 600; color: var(--muted); cursor: pointer; }
+.seg button.on { background: var(--panel-2); color: var(--text); }
+.tbl-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 16px 14px; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.side { display: flex; flex-direction: column; gap: 12px; }
+.code-box { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 8px; background: var(--panel-2); border: 1px dashed #3a3a44; }
+.code-box .num { font-size: 18px; letter-spacing: .08em; }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; font-size: 13px; margin: 12px 0 0; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; text-align: right; }
+.rank { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.rank li { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.avatar { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 700 10px/1 var(--display); color: #fff; }
+.rank .num { color: var(--muted); font-size: 12.5px; }
+
+.reports { display: flex; flex-direction: column; }
+.rep { border-top: 1px solid var(--line); }
+.rep:first-child { border-top: 0; }
+.rep-btn { width: 100%; background: transparent; border: 0; padding: 13px 16px; display: grid; grid-template-columns: minmax(150px, 1.4fr) repeat(4, minmax(90px, 1fr)) 24px; gap: 12px; align-items: center; text-align: left; cursor: pointer; }
+.rep-btn:hover { background: #17171c; }
+.rep-btn .m { font-weight: 650; }
+.rep-btn .m span { display: block; color: var(--muted); font-size: 12px; font-weight: 500; }
+.rep-btn .k { font-size: 12px; color: var(--muted); }
+.rep-btn .k b { display: block; color: var(--text); font: 500 14px var(--mono); }
+.caret { color: var(--muted); transition: transform .2s; }
+.rep.open .caret { transform: rotate(90deg); }
+.rep-body { padding: 0 16px 16px; color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 900px; }
+.rep-body p { margin: 0 0 8px; }
+.rep-body b { color: var(--text); font-weight: 600; }
+
+footer { max-width: 1320px; margin: 0 auto; padding: 0 20px 40px; color: var(--muted); font-size: 12px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; }
+
+@media (max-width: 1150px) {
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .split, .members-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .quad { grid-template-columns: minmax(0, 1fr); }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  h1 { font-size: 24px; }
+  .top-in, main, .notice-in, footer { padding-left: 16px; padding-right: 16px; }
+  .range { display: none; }
+  .rep-btn { grid-template-columns: minmax(0, 1fr) auto 24px; }
+  .rep-btn .k.hide-sm { display: none; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .map { height: 360px; }
+  .top { position: static; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="notice"><div class="notice-in"><b>Demo account</b><span>Prepared by LekkerClap for the Zimbabwe Republic Police. All people, incidents and figures are fictional. This is not an official ZRP system.</span></div></div>
+  <div class="top-in">
+    <div class="top-row">
+      <a class="mark" href="#overview" aria-label="LekkerClap for Organisations">
+        <span class="mark-dot"><span>LC</span></span>
+        <span class="mark-name">LekkerClap<small>for Organisations</small></span>
+      </a>
+      <div class="org-chip">
+        <img class="org-logo" id="zrp-logo" src="/demo/zrp-logo.png" alt="Zimbabwe Republic Police">
+        <span class="org-logo-text" id="zrp-logo-text" hidden>ZRP</span>
+        <span><b>Zimbabwe Republic Police</b><small>Bulawayo Province</small></span>
+      </div>
+      <span class="pill pill-demo">Demo account</span>
+      <span class="spacer"></span>
+      <span class="range" id="range"></span>
+      <button class="btn btn-sos" id="simulate" type="button">Simulate an alert</button>
+    </div>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#overview" class="on">Overview</a>
+      <a href="#live">Live<span class="live-count num" id="tab-live">2</span></a>
+      <a href="#stations">Stations</a>
+      <a href="#incidents">Incidents</a>
+      <a href="#officers">Officers</a>
+      <a href="#reports">Reports</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="overview" class="head">
+    <div>
+      <div class="eyebrow">Command view · Demo</div>
+      <h1>Bulawayo</h1>
+      <p class="sub">Community SOS alerts raised on LekkerClap across Bulawayo, with ZRP officers alerted and responding alongside community responders.</p>
+    </div>
+    <div class="tools"><span class="card-note">Last 30 days, compared with the 30 days before</span></div>
+  </section>
+
+  <div class="tiles" id="tiles"></div>
+
+  <section id="live" class="split">
+    <div class="card">
+      <div class="card-h"><h2>Live alerts</h2><span class="card-note" id="live-note"></span></div>
+      <div class="card-b"><div class="live-list" id="live-list"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-h">
+        <h2>Alerts across Bulawayo</h2>
+        <div class="legend">
+          <span><i style="background:var(--brand-hi)"></i>Live</span>
+          <span><i style="background:var(--ok)"></i>Help arrived</span>
+          <span><i style="background:var(--duress)"></i>Duress signal</span>
+          <span><i style="background:var(--warn)"></i>Unanswered</span>
+          <span><i class="sq" style="background:var(--police)"></i>ZRP station</span>
+        </div>
+      </div>
+      <div class="card-b"><div class="map" id="map" role="region" aria-label="Map of Bulawayo with the community SOS alerts of the last 30 days and ZRP stations"></div></div>
+    </div>
+  </section>
+
+  <div class="quad">
+    <div class="card">
+      <div class="card-h"><h2>Alerts per week</h2><span class="card-note">Bulawayo, last 12 weeks</span></div>
+      <div class="card-b"><svg class="chart" id="c-weeks" viewBox="0 0 520 210"></svg></div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h2>Time to first responder</h2><span class="card-note">Median per week</span></div>
+      <div class="card-b"><svg class="chart" id="c-resp" viewBox="0 0 520 210"></svg></div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h2>When alerts happen</h2><span class="card-note">Last 12 weeks, by day and hour</span></div>
+      <div class="card-b"><svg class="chart" id="c-heat" viewBox="0 0 520 210"></svg><div class="callout" id="heat-note"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h2>What people reported</h2><span class="card-note">Incident type, last 30 days</span></div>
+      <div class="card-b"><div class="types" id="types"></div><div class="callout" id="types-note"></div></div>
+    </div>
+  </div>
+
+  <section id="stations" class="card">
+    <div class="card-h"><h2>By station area</h2><span class="card-note">Last 30 days · alerts grouped by the nearest ZRP station</span></div>
+    <div class="card-b" style="padding:8px 0 0">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Station</th><th class="r">Alerts</th><th class="r">Answered</th><th class="r">Median first responder</th><th class="r">Officer responses</th><th>Who responded first</th><th class="r">Unanswered</th></tr></thead>
+          <tbody id="station-rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="incidents" class="card">
+    <div class="card-h"><h2>Latest incidents</h2><span class="card-note">Select an incident to find it on the map</span></div>
+    <div class="card-b" style="padding:8px 0 0">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Raised</th><th>Person</th><th>Area</th><th>Type</th><th>Nearest station</th><th class="r">Responders</th><th class="r">First responder after</th><th>Outcome</th></tr></thead>
+          <tbody id="alert-rows"></tbody>
+        </table>
+      </div>
+      <div class="tbl-foot"><span id="alert-count"></span><button class="btn btn-ghost" id="more-alerts" type="button">Show more</button></div>
+    </div>
+  </section>
+
+  <section id="officers" class="members-grid">
+    <div class="card">
+      <div class="card-h">
+        <h2 id="officers-title">Officers</h2>
+        <div class="tools">
+          <input class="search" id="search" type="search" placeholder="Search name, rank or station" aria-label="Search officers">
+          <div class="seg" role="group" aria-label="Filter officers">
+            <button type="button" class="on" data-filter="all">All</button>
+            <button type="button" data-filter="pending">Pending ID check</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-b" style="padding:8px 0 0">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Officer</th><th>Rank</th><th>Station</th><th>ID check</th><th class="r">Responses</th><th>Joined</th></tr></thead>
+            <tbody id="officer-rows"></tbody>
+          </table>
+        </div>
+        <div class="tbl-foot"><span id="officer-count"></span><button class="btn btn-ghost" id="more" type="button">Show all</button></div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="card">
+        <div class="card-h"><h2>Enterprise code</h2></div>
+        <div class="card-b">
+          <div class="code-box"><span class="num" id="code">ZRP-BYO-4K7Q</span><button class="btn" id="copy" type="button">Copy</button></div>
+          <dl class="kv">
+            <dt>Officer seats used</dt><dd class="num" id="kv-seats"></dd>
+            <dt>Seats left</dt><dd class="num" id="kv-left"></dd>
+            <dt>Stations covered</dt><dd class="num" id="kv-stations"></dd>
+            <dt>Code active until</dt><dd>30 Jun 2027</dd>
+          </dl>
+          <p class="card-note" style="margin:12px 0 0">Officers enter this code in the LekkerClap app under Profile, then Enterprise access. Alerts near them reach their phones like any responder's.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Officers who responded most</h2><span class="card-note">Last 30 days</span></div>
+        <div class="card-b"><ol class="rank" id="rank"></ol></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reports" class="card">
+    <div class="card-h"><h2>Monthly reports</h2><span class="card-note">Bulawayo Province summary per month</span></div>
+    <div class="card-b" style="padding:8px 0 0"><div class="reports" id="reports-list"></div></div>
+  </section>
+</main>
+
+<footer>
+  <span>Demo account prepared by LekkerClap for a presentation to the Zimbabwe Republic Police. The people, incidents and figures shown are fictional; this is not an official ZRP system.</span>
+  <span>LekkerClap · community SOS</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(() => {
+  "use strict";
+  const NOW = new Date("2026-10-15T09:40:00+02:00").getTime();
+  const MIN = 60e3, HOUR = 60 * MIN, DAY = 24 * HOUR, WEEK = 7 * DAY;
+
+  // Seeded random numbers, so the demo looks the same every time.
+  let seed = 9620;
+  const rnd = () => { seed |= 0; seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const pick = (a) => a[Math.floor(rnd() * a.length)];
+  const weighted = (entries) => { const total = entries.reduce((s, [, w]) => s + w, 0); let r = rnd() * total; for (const [v, w] of entries) { r -= w; if (r <= 0) return v; } return entries[entries.length - 1][0]; };
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const fmtDur = (s) => s == null ? "—" : `${Math.floor(s / 60)}m ${String(Math.round(s % 60)).padStart(2, "0")}s`;
+  const fmtDate = (t) => new Date(t).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Africa/Harare" });
+  const fmtDay = (t) => new Date(t).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Africa/Harare" });
+  const pct = (a, b) => b ? Math.round((a / b) * 100) : 0;
+  const median = (xs) => { if (!xs.length) return null; const s = xs.slice().sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+  const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs = {}, text) => { const n = document.createElementNS(SVGNS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (text != null) n.textContent = text; return n; };
+
+  // The ZRP logo, or a text badge if the image is missing.
+  const logoMissing = () => { $("zrp-logo").hidden = true; $("zrp-logo-text").hidden = false; };
+  $("zrp-logo").addEventListener("error", logoMissing);
+  if ($("zrp-logo").complete && !$("zrp-logo").naturalWidth) logoMissing();
+
+  // ZRP stations (demo positions) and the Bulawayo suburbs they cover, with how often alerts come from each.
+  const STATIONS = {
+    "Bulawayo Central": [-20.1512, 28.5826], "Mzilikazi": [-20.1360, 28.5600], "Nkulumane": [-20.2005, 28.5165],
+    "Entumbane": [-20.1305, 28.5195], "Luveve": [-20.1095, 28.5330], "Cowdray Park": [-20.0905, 28.5245],
+    "Pumula": [-20.1690, 28.4930], "Magwegwe": [-20.1485, 28.5045], "Tshabalala": [-20.1860, 28.5290],
+    "Hillside": [-20.1705, 28.6070], "Western Commonage": [-20.1650, 28.5480],
+  };
+  const AREAS = [
+    ["CBD", -20.1530, 28.5850, 9, "Bulawayo Central"], ["Makokoba", -20.1430, 28.5560, 7, "Mzilikazi"],
+    ["Mzilikazi", -20.1320, 28.5660, 4, "Mzilikazi"], ["Nkulumane", -20.2040, 28.5120, 8, "Nkulumane"],
+    ["Nketa", -20.2120, 28.5380, 5, "Nkulumane"], ["Entumbane", -20.1270, 28.5240, 5, "Entumbane"],
+    ["Emakhandeni", -20.1370, 28.5060, 4, "Entumbane"], ["Luveve", -20.1060, 28.5360, 5, "Luveve"],
+    ["Cowdray Park", -20.0870, 28.5190, 7, "Cowdray Park"], ["Pumula", -20.1710, 28.4890, 6, "Pumula"],
+    ["Magwegwe", -20.1510, 28.5000, 4, "Magwegwe"], ["Lobengula", -20.1590, 28.5300, 4, "Western Commonage"],
+    ["Tshabalala", -20.1890, 28.5330, 4, "Tshabalala"], ["Sizinda", -20.1920, 28.5060, 3, "Tshabalala"],
+    ["Donnington", -20.1690, 28.5620, 3, "Western Commonage"], ["Hillside", -20.1730, 28.6110, 3, "Hillside"],
+    ["Suburbs", -20.1440, 28.6020, 3, "Bulawayo Central"], ["Famona", -20.1690, 28.5950, 2, "Hillside"],
+    ["Burnside", -20.1980, 28.6260, 2, "Hillside"], ["Kumalo", -20.1380, 28.6060, 2, "Bulawayo Central"],
+  ];
+  const areaByName = Object.fromEntries(AREAS.map((a) => [a[0], a]));
+
+  const TYPES = [["Theft", 34], ["Abuse", 22], ["Medical", 21], ["Fire", 5], [null, 7]];
+  const OUTCOME = {
+    arrived: ["Help arrived", "c-ok", "#2fc46b"], duress: ["Duress signal", "c-duress", "#b39cff"],
+    unanswered: ["Unanswered", "c-warn", "#f2a516"], cancelled: ["Cancelled by the person", "c-mute", "#8e8e99"],
+  };
+  const PEOPLE = ["Sibongile N.", "Thabani M.", "Nomsa D.", "Bhekani S.", "Zodwa K.", "Mandla T.", "Nokuthula M.", "Sipho N.", "Lindiwe M.", "Themba D.", "Busisiwe N.", "Sakhile M.", "Nhlanhla K.", "Thandiwe S.", "Mthulisi N.", "Siphiwe D.", "Ntombi M.", "Lwazi T.", "Thulani K.", "Nomvula S.", "Gugu B.", "Sizwe Z.", "Precious N.", "Blessing M.", "Tinashe C.", "Rudo G.", "Farai P.", "Mbali H."];
+
+  // Officers on LekkerClap (64 of 80 seats).
+  const FIRST = ["Sibusiso", "Thandeka", "Nkosana", "Sipho", "Nomvula", "Mthokozisi", "Lindiwe", "Bongani", "Zanele", "Themba", "Sithembiso", "Nokwanda", "Mlungisi", "Khanyisile", "Dumisani", "Sinikiwe", "Bhekimpilo", "Nobuhle", "Vusumuzi", "Ayanda", "Tendai", "Rumbidzai", "Tapiwa", "Chipo", "Kudakwashe", "Nyasha"];
+  const LAST = ["Ndlovu", "Moyo", "Ncube", "Sibanda", "Dube", "Mpofu", "Nyathi", "Khumalo", "Tshuma", "Mlilo", "Mathe", "Ngwenya", "Mhlanga", "Siziba", "Mguni", "Mkandla", "Gumede", "Dlamini", "Hlabangana", "Masuku"];
+  const RANKS = [["Constable", 52], ["Sergeant", 20], ["Assistant Inspector", 12], ["Inspector", 6], ["Chief Inspector", 2]];
+  const AVATAR = ["#7a2424", "#24507a", "#2f6b46", "#6b4f22", "#55306f", "#2a5f66", "#6a2f4f"];
+  const STATION_NAMES = Object.keys(STATIONS);
+  const officers = [];
+  const usedNames = new Set();
+  while (officers.length < 64) {
+    const name = `${pick(FIRST)} ${pick(LAST)}`;
+    if (usedNames.has(name)) continue;
+    usedNames.add(name);
+    officers.push({ name, rank: weighted(RANKS), station: pick(STATION_NAMES), verified: rnd() > .06, joined: NOW - Math.floor(rnd() * 120 + 3) * DAY, responses: 0, color: AVATAR[officers.length % AVATAR.length] });
+  }
+  const officersAt = (station) => officers.filter((o) => o.station === station);
+
+  // Community alerts in Bulawayo for the last 12 weeks.
+  const HOURS = Array.from({ length: 24 }, (_, h) => [h, 0.25 + Math.exp(-((h - 20) ** 2) / 7) * 3.2 + Math.exp(-((h - 7) ** 2) / 3) * 1.1 + Math.exp(-((h - 13) ** 2) / 6) * 0.6]);
+  const alerts = [];
+  for (let d = 84; d >= 1; d--) {
+    const dayStart = NOW - d * DAY;
+    const dow = new Date(dayStart).getDay(); // 0 Sun … 6 Sat
+    const weekend = dow === 5 || dow === 6 ? 1.6 : dow === 0 ? 1.25 : 1;
+    const trend = 0.85 + (84 - d) / 84 * 0.3;
+    const n = Math.round((4.6 + rnd() * 3.2) * weekend * trend);
+    for (let k = 0; k < n; k++) {
+      const area = weighted(AREAS.map((a) => [a, a[3]]));
+      const hour = weighted(HOURS);
+      const t = dayStart - (dayStart % DAY) + (hour - 2) * HOUR + Math.floor(rnd() * 60) * MIN;
+      const outcome = weighted([["arrived", 86], ["cancelled", 6], ["unanswered", 6.2], ["duress", 1.8]]);
+      const community = outcome === "unanswered" ? 0 : outcome === "cancelled" ? Math.floor(rnd() * 2) : 1 + Math.floor(rnd() * 5);
+      const officerResp = outcome === "unanswered" ? 0 : rnd() < (outcome === "duress" ? .95 : .48) ? 1 + (rnd() < .25 ? 1 : 0) : 0;
+      const base = outcome === "unanswered" || community + officerResp === 0 ? null : Math.round(55 + Math.exp(rnd() * 2.1 + 3.1) + rnd() * 60 + d * 0.9);
+      const firstS = base == null ? null : Math.max(35, base);
+      const officerFirst = officerResp > 0 && rnd() < 0.34;
+      alerts.push({ t, area: area[0], station: area[4], lat: area[1] + (rnd() - .5) * 0.017, lng: area[2] + (rnd() - .5) * 0.017, type: weighted(TYPES), person: pick(PEOPLE), outcome, community, officers: officerResp, firstS, officerFirst });
+    }
+  }
+  alerts.sort((a, b) => b.t - a.t);
+  // Officer responses in the last 30 days, credited to officers of the alert's station.
+  for (const a of alerts) {
+    if (a.t <= NOW - 30 * DAY || !a.officers) continue;
+    const pool = officersAt(a.station).length ? officersAt(a.station) : officers;
+    for (let i = 0; i < a.officers; i++) pick(pool).responses += 1;
+  }
+  const recent = () => alerts.filter((a) => a.t > NOW - 30 * DAY);
+  const previous = alerts.filter((a) => a.t <= NOW - 30 * DAY && a.t > NOW - 60 * DAY);
+
+  // ---- Summary tiles -------------------------------------------------------------------
+  let liveCount = 0;
+  function renderTiles() {
+    const r = recent();
+    const closed = r.filter((a) => a.outcome !== "cancelled");
+    const answered = r.filter((a) => a.firstS != null && a.outcome !== "cancelled");
+    const med = median(answered.map((a) => a.firstS));
+    const prevMed = median(previous.filter((a) => a.firstS != null).map((a) => a.firstS));
+    const change = pct(r.length - previous.length, previous.length);
+    const officerResp = r.reduce((s, a) => s + a.officers, 0);
+    const duress = r.filter((a) => a.outcome === "duress").length;
+    const faster = Math.round(prevMed - med);
+    const tiles = [
+      ["Live alerts now", `${liveCount}`, liveCount ? "Being answered right now" : "No open alerts", liveCount ? "hot" : ""],
+      ["Community alerts", `${r.length}`, `<span class="${change > 0 ? "delta-bad" : "delta-good"}">${change > 0 ? "▲" : "▼"} ${Math.abs(change)}%</span> vs previous 30 days`, ""],
+      ["Answered by a responder", `${pct(answered.length, closed.length)}<small>%</small>`, `${answered.length} of ${closed.length} alerts`, ""],
+      ["Median first responder", `${Math.floor(med / 60)}<small>m</small> ${String(Math.round(med % 60)).padStart(2, "0")}<small>s</small>`, faster > 0 ? `<span class="delta-good">▼ ${faster}s</span> faster than before` : `<span class="delta-bad">▲ ${-faster}s</span> slower than before`, ""],
+      ["Officer responses", `${officerResp}`, `${pct(r.filter((a) => a.officers).length, r.length)}% of alerts had an officer respond`, ""],
+      ["Duress signals", `${duress}`, "Alerts ended under pressure, kept live", ""],
+    ];
+    $("tiles").innerHTML = tiles.map(([l, v, d, c]) => `<div class="card tile ${c}"><div class="eyebrow">${l}</div><div class="val">${v}</div><div class="det">${d}</div></div>`).join("");
+  }
+
+  // ---- Map ------------------------------------------------------------------------------
+  // Bulawayo on a real map (Leaflet with OpenStreetMap's tiles, darkened in CSS to match the page).
+  let highlighted = null;
+  const map = L.map("map", { scrollWheelZoom: false, fadeAnimation: false }).setView([-20.155, 28.555], 12);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+  for (const [name, [lat, lng]] of Object.entries(STATIONS)) {
+    L.marker([lat, lng], { icon: L.divIcon({ className: "station-pin", iconSize: [13, 13] }), zIndexOffset: 500 })
+      .bindTooltip(`<b>ZRP ${esc(name)}</b><br>${officersAt(name).length} officers on LekkerClap`, { className: "lc-tip", direction: "top", offset: [0, -8] }).addTo(map);
+  }
+  const pins = L.layerGroup().addTo(map);
+  const alertMarkers = new Map();
+  const tipHtml = (a) => `<b>${a.type ?? "No report filed"}</b> · ${esc(a.area)}<br>${fmtDate(a.t)} · nearest station ${esc(a.station)}<br>${OUTCOME[a.outcome][0]}${a.firstS ? ` · first responder after ${fmtDur(a.firstS)}` : ""}${a.officers ? ` · ${a.officers} officer${a.officers > 1 ? "s" : ""}` : ""}`;
+  const live = [];
+  function drawMap() {
+    pins.clearLayers(); alertMarkers.clear();
+    for (const a of recent()) {
+      const hl = highlighted === a;
+      const m = L.circleMarker([a.lat, a.lng], { radius: hl ? 10 : a.outcome === "arrived" ? 5 : 6.5, color: "#0e0e12", weight: hl ? 2.5 : 1.5, fillColor: OUTCOME[a.outcome][2], fillOpacity: a.outcome === "arrived" && !hl ? .8 : 1 })
+        .bindTooltip(tipHtml(a), { className: "lc-tip", direction: "top", offset: [0, -6] }).addTo(pins);
+      if (a.outcome !== "arrived") m.bringToFront();
+      alertMarkers.set(a, m);
+    }
+    for (const l of live) {
+      if (l.closed || l.arrived) continue;
+      L.marker([l.lat, l.lng], { icon: L.divIcon({ className: "live-pin", html: '<span class="ring"></span><span class="dot"></span>', iconSize: [18, 18] }), zIndexOffset: 1000 })
+        .bindTooltip(`<b>Live SOS</b> · ${esc(l.area)}<br>Nearest station ${esc(l.station)}`, { className: "lc-tip", direction: "top", offset: [0, -10] }).addTo(pins);
+    }
+  }
+
+  // ---- Live alerts ------------------------------------------------------------------------
+  function addLive({ area, person, startedAgo = 0, community = 0, officers: off = 0, notified }) {
+    const a = areaByName[area];
+    const item = { id: Math.random().toString(36).slice(2), area, station: a[4], person, lat: a[1] + (rnd() - .5) * 0.008, lng: a[2] + (rnd() - .5) * 0.008, start: Date.now() - startedAgo * 1000, community, officers: off, notified: notified ?? 520 + Math.floor(rnd() * 400), nearest: (0.3 + rnd() * 1.2).toFixed(1), officerKm: (0.8 + rnd() * 2.2).toFixed(1), notifiedShown: startedAgo > 0, arrived: false, type: pick(["Theft", "Abuse", "Medical", "Theft"]), firstAt: community || off ? Date.now() - (startedAgo - 65) * 1000 : null };
+    live.unshift(item);
+    liveCount = live.filter((l) => !l.closed && !l.arrived).length;
+    renderLive(); drawMap(); renderTiles();
+    return item;
+  }
+  function renderLive() {
+    const open = live.filter((l) => !l.closed);
+    const active = open.filter((l) => !l.arrived).length;
+    $("tab-live").textContent = active; $("tab-live").hidden = !active;
+    $("live-note").textContent = active ? "Updates as it happens" : "";
+    if (!open.length) { $("live-list").innerHTML = `<div class="empty">No live alerts in Bulawayo right now.</div>`; return; }
+    $("live-list").innerHTML = open.map((l) => {
+      const secs = Math.max(0, Math.floor(((l.arrivedAt ?? Date.now()) - l.start) / 1000));
+      const t = `${String(Math.floor(secs / 60)).padStart(2, "0")}:${String(secs % 60).padStart(2, "0")}`;
+      const resp = [l.community ? `${l.community} community` : "", l.officers ? `${l.officers} officer${l.officers > 1 ? "s" : ""}` : ""].filter(Boolean).join(" + ");
+      const steps = [
+        ["SOS sent", "0:00", true],
+        ["People nearby alerted", l.notifiedShown ? String(l.notified) : "…", l.notifiedShown],
+        [resp ? `${resp} on the way` : "Waiting for responders", resp ? `nearest ${l.nearest} km` : "—", !!resp],
+        ["Help arrived", l.arrived ? t : "—", l.arrived],
+      ];
+      return `<div class="live${l.arrived ? " done" : ""}">
+        <div class="live-top">
+          <div><div class="live-who">${esc(l.person)} · ${esc(l.area)}</div><div class="live-where">Nearest station: ZRP ${esc(l.station)}${l.officers ? ` · officer ${l.officerKm} km away` : ""}</div></div>
+          <div style="text-align:right"><div class="timer">${t}</div><span class="chip ${l.arrived ? "c-ok" : "c-live"}">${l.arrived ? "Help arrived" : "Live"}</span></div>
+        </div>
+        <ol class="steps">${steps.map(([a, b, ok]) => `<li class="${ok ? "ok" : ""}">${a}<b>${b}</b></li>`).join("")}</ol>
+        <div class="live-foot"><span>${l.arrived ? "Closed by the person with their PIN" : "Location shared live with responders and the station"}</span>
+          ${l.arrived ? `<button class="btn btn-ghost" type="button" data-close="${l.id}">Dismiss</button>` : `<button class="btn" type="button" data-arrive="${l.id}">Mark help arrived</button>`}
+        </div>
+      </div>`;
+    }).join("");
+  }
+  function arrive(l) {
+    if (!l || l.arrived) return;
+    l.arrived = true; l.arrivedAt = Date.now();
+    if (!l.community && !l.officers) { l.community = 1; l.firstAt = Date.now(); }
+    alerts.unshift({ t: l.start, area: l.area, station: l.station, lat: l.lat, lng: l.lng, type: l.type, person: l.person, outcome: "arrived", community: l.community, officers: l.officers, firstS: Math.round(((l.firstAt ?? l.arrivedAt) - l.start) / 1000), officerFirst: false, fresh: true });
+    liveCount = live.filter((x) => !x.closed && !x.arrived).length;
+    renderLive(); drawMap(); renderAlerts(); renderTiles(); renderStations();
+  }
+  $("live-list").addEventListener("click", (e) => {
+    const a = e.target.closest("[data-arrive]"); const c = e.target.closest("[data-close]");
+    if (a) arrive(live.find((l) => l.id === a.dataset.arrive));
+    if (c) { const l = live.find((x) => x.id === c.dataset.close); l.closed = true; renderLive(); drawMap(); }
+  });
+  const SIM = [["Sizwe Z.", "Nkulumane"], ["Gugu B.", "CBD"], ["Mbali H.", "Cowdray Park"], ["Lwazi T.", "Makokoba"], ["Nomvula S.", "Pumula"]];
+  let simIndex = 0;
+  $("simulate").addEventListener("click", () => {
+    const [person, area] = SIM[simIndex++ % SIM.length];
+    const l = addLive({ person, area });
+    map.flyTo([l.lat, l.lng], Math.max(map.getZoom(), 14), { animate: !reduceMotion(), duration: 0.8 });
+    const btn = $("simulate"); btn.disabled = true; setTimeout(() => (btn.disabled = false), 4000);
+    setTimeout(() => { l.notifiedShown = true; renderLive(); }, 2500);
+    setTimeout(() => { l.community = 1; l.firstAt = Date.now(); renderLive(); }, 8000);
+    setTimeout(() => { l.officers = 1; renderLive(); }, 12000);
+    setTimeout(() => { l.community = 3; renderLive(); }, 16000);
+    setTimeout(() => arrive(l), 26000);
+    document.getElementById("live").scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" });
+  });
+  setInterval(() => { if (live.some((l) => !l.arrived && !l.closed)) renderLive(); }, 1000);
+
+  // ---- Charts ---------------------------------------------------------------------------
+  const weekly = Array.from({ length: 12 }, (_, i) => {
+    const end = NOW - (11 - i) * WEEK, start = end - WEEK;
+    const inWeek = alerts.filter((a) => a.t > start && a.t <= end);
+    return { end, count: inWeek.length, median: median(inWeek.filter((a) => a.firstS != null).map((a) => a.firstS)) };
+  });
+  const weekLabel = (w) => new Date(w.end - DAY).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "Africa/Harare" });
+  function drawWeeks() {
+    const svg = $("c-weeks"); const W = 520, H = 210, L = 34, R = 10, T = 16, B = 30;
+    const top = Math.ceil(Math.max(...weekly.map((w) => w.count)) / 20) * 20, cw = (W - L - R) / weekly.length;
+    for (let v = 0; v <= top; v += 20) { const y = T + (H - T - B) * (1 - v / top); svg.append(el("line", { x1: L, x2: W - R, y1: y, y2: y, class: "grid" })); svg.append(el("text", { x: L - 8, y: y + 4, class: "axis", "text-anchor": "end" }, v)); }
+    weekly.forEach((w, i) => {
+      const h = (H - T - B) * (w.count / top), x = L + i * cw + cw * .18, y = H - B - h;
+      svg.append(el("rect", { x, y, width: cw * .64, height: h, rx: 3, class: `bar${i === weekly.length - 1 ? " last" : ""}` }));
+      if (i === weekly.length - 1 || w.count === Math.max(...weekly.map((x) => x.count))) svg.append(el("text", { x: x + cw * .32, y: y - 6, class: "lbl", "text-anchor": "middle" }, w.count));
+      if (i % 3 === 2 || i === 0) svg.append(el("text", { x: x + cw * .32, y: H - B + 18, class: "axis", "text-anchor": "middle" }, weekLabel(w)));
+    });
+  }
+  function drawResp() {
+    const svg = $("c-resp"); const W = 520, H = 210, L = 44, R = 14, T = 16, B = 30;
+    const meds = weekly.map((w) => w.median), max = 360;
+    const xs = (i) => L + (W - L - R) * (i / (meds.length - 1)), ys = (v) => T + (H - T - B) * (1 - Math.min(v, max) / max);
+    for (let v = 0; v <= max; v += 120) { svg.append(el("line", { x1: L, x2: W - R, y1: ys(v), y2: ys(v), class: "grid" })); svg.append(el("text", { x: L - 8, y: ys(v) + 4, class: "axis", "text-anchor": "end" }, `${v / 60}m`)); }
+    svg.append(el("line", { x1: L, x2: W - R, y1: ys(300), y2: ys(300), class: "target" }));
+    svg.append(el("text", { x: W - R, y: ys(300) - 6, class: "target-lbl", "text-anchor": "end" }, "5 min target"));
+    const pts = meds.map((v, i) => `${xs(i).toFixed(1)},${ys(v).toFixed(1)}`);
+    svg.append(el("path", { d: `M${xs(0)},${ys(0)} L${pts.join(" L")} L${xs(meds.length - 1)},${ys(0)} Z`, class: "area" }));
+    svg.append(el("path", { d: `M${pts.join(" L")}`, class: "line" }));
+    const li = meds.length - 1;
+    svg.append(el("circle", { cx: xs(li), cy: ys(meds[li]), r: 4.5, class: "dot" }));
+    svg.append(el("text", { x: xs(li) - 8, y: ys(meds[li]) - 10, class: "lbl", "text-anchor": "end" }, fmtDur(meds[li])));
+    [0, 3, 6, 9, 11].forEach((i) => svg.append(el("text", { x: xs(i), y: H - B + 18, class: "axis", "text-anchor": i === 11 ? "end" : "middle" }, weekLabel(weekly[i]))));
+  }
+  function drawHeat() {
+    const svg = $("c-heat"); const W = 520, H = 210, L = 34, T = 6, B = 24, R = 4;
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const grid = Array.from({ length: 7 }, () => Array(24).fill(0));
+    for (const a of alerts) { const d = new Date(a.t + 2 * HOUR); grid[(d.getUTCDay() + 6) % 7][d.getUTCHours()] += 1; }
+    const peak = Math.max(...grid.flat()), cw = (W - L - R) / 24, ch = (H - T - B) / 7;
+    days.forEach((d, r) => {
+      svg.append(el("text", { x: L - 8, y: T + r * ch + ch / 2 + 4, class: "axis", "text-anchor": "end" }, d));
+      for (let h = 0; h < 24; h++) { const v = grid[r][h]; svg.append(el("rect", { x: L + h * cw + 1, y: T + r * ch + 1, width: cw - 2, height: ch - 2, rx: 2, fill: v ? `rgba(255, 74, 69, ${(0.12 + 0.88 * v / peak).toFixed(2)})` : "#1b1b20" })); }
+    });
+    [0, 6, 12, 18, 23].forEach((h) => svg.append(el("text", { x: L + h * cw + cw / 2, y: H - 6, class: "axis", "text-anchor": "middle" }, `${String(h).padStart(2, "0")}:00`)));
+    const evening = alerts.filter((a) => { const h = new Date(a.t + 2 * HOUR).getUTCHours(); return h >= 18 && h <= 23; }).length;
+    $("heat-note").innerHTML = `<b>${pct(evening, alerts.length)}% of alerts</b> come between <b>18:00 and 23:59</b>, peaking on <b>Friday and Saturday nights</b>: the hours to plan patrols and standby officers around.`;
+  }
+  function renderTypes() {
+    const r = recent(), counts = {};
+    for (const a of r) { const k = a.type ?? "No report filed"; counts[k] = (counts[k] ?? 0) + 1; }
+    const rows = Object.entries(counts).sort((a, b) => b[1] - a[1]), max = rows[0][1];
+    const label = { Abuse: "Assault / abuse" };
+    $("types").innerHTML = rows.map(([k, v]) => `<div class="type-row"><span>${label[k] ?? k}</span><div class="type-bar"><i style="width:${(v / max) * 100}%;${k === "No report filed" ? "background:var(--muted)" : ""}"></i></div><span class="num">${v}</span></div>`).join("");
+    const byArea = {}; for (const a of r.filter((x) => x.type === "Theft")) byArea[a.area] = (byArea[a.area] ?? 0) + 1;
+    const topAreas = Object.entries(byArea).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k]) => k);
+    $("types-note").innerHTML = `<b>Theft and robbery</b> lead, concentrated in <b>${topAreas.join(", ")}</b>. Assault and abuse alerts are mostly at night in the high-density suburbs.`;
+  }
+
+  // ---- Stations ------------------------------------------------------------------------------
+  function renderStations() {
+    const r = recent();
+    const rows = STATION_NAMES.map((name) => {
+      const xs = r.filter((a) => a.station === name), closed = xs.filter((a) => a.outcome !== "cancelled");
+      const answered = closed.filter((a) => a.firstS != null);
+      const officerFirst = answered.filter((a) => a.officerFirst).length;
+      return { name, n: xs.length, answered: pct(answered.length, closed.length), med: median(answered.map((a) => a.firstS)), officers: xs.reduce((s, a) => s + a.officers, 0), officerShare: pct(officerFirst, answered.length), unanswered: xs.filter((a) => a.outcome === "unanswered").length };
+    }).sort((a, b) => b.n - a.n);
+    $("station-rows").innerHTML = rows.map((s) => `<tr>
+      <td class="who"><b>ZRP ${esc(s.name)}</b><span>${officersAt(s.name).length} officers on LekkerClap</span></td>
+      <td class="r num">${s.n}</td>
+      <td class="r num">${s.answered}%</td>
+      <td class="r num${s.med > 300 ? " slow" : ""}">${fmtDur(s.med)}</td>
+      <td class="r num">${s.officers}</td>
+      <td><div style="display:flex;align-items:center;gap:8px"><div class="split-bar" title="Officer first ${s.officerShare}%"><i style="width:${s.officerShare}%;background:var(--police)"></i><i style="width:${100 - s.officerShare}%;background:#3a3a44"></i></div><span class="num" style="color:var(--muted);font-size:12px">${s.officerShare}% officer</span></div></td>
+      <td class="r num">${s.unanswered ? `<span class="slow">${s.unanswered}</span>` : "0"}</td></tr>`).join("");
+  }
+
+  // ---- Incidents -------------------------------------------------------------------------
+  let shownAlerts = 15;
+  function renderAlerts() {
+    const list = alerts.slice(0, shownAlerts);
+    $("alert-rows").innerHTML = list.map((a, i) => {
+      const [label, cls] = OUTCOME[a.outcome];
+      const resp = a.community + a.officers ? `${a.community}${a.officers ? ` + <span style="color:var(--police)">${a.officers} ZRP</span>` : ""}` : "0";
+      return `<tr class="click${a.fresh ? " fresh" : ""}${highlighted === a ? " hl" : ""}" data-i="${i}" tabindex="0">
+        <td class="num">${fmtDate(a.t)}</td>
+        <td>${esc(a.person)}</td>
+        <td>${esc(a.area)}</td>
+        <td>${a.type ?? '<span style="color:var(--muted)">No report</span>'}</td>
+        <td>ZRP ${esc(a.station)}</td>
+        <td class="r num">${resp}</td>
+        <td class="r num${a.firstS > 300 ? " slow" : ""}">${fmtDur(a.firstS)}</td>
+        <td><span class="chip ${cls}">${label}</span></td></tr>`;
+    }).join("");
+    alerts.forEach((a) => delete a.fresh);
+    $("alert-count").textContent = `Showing ${list.length} of ${recent().length} alerts in the last 30 days`;
+  }
+  function focusAlert(i) {
+    const a = alerts[i]; highlighted = a; renderAlerts(); drawMap();
+    document.getElementById("live").scrollIntoView({ behavior: reduceMotion() ? "auto" : "smooth", block: "start" });
+    setTimeout(() => { map.flyTo([a.lat, a.lng], 15, { animate: !reduceMotion(), duration: 0.8 }); setTimeout(() => alertMarkers.get(a)?.openTooltip(), reduceMotion() ? 0 : 850); }, 350);
+  }
+  $("alert-rows").addEventListener("click", (e) => { const tr = e.target.closest("tr[data-i]"); if (tr) focusAlert(+tr.dataset.i); });
+  $("alert-rows").addEventListener("keydown", (e) => { if (e.key === "Enter") { const tr = e.target.closest("tr[data-i]"); if (tr) focusAlert(+tr.dataset.i); } });
+  $("more-alerts").addEventListener("click", () => { shownAlerts += 15; renderAlerts(); });
+
+  // ---- Officers ------------------------------------------------------------------------------
+  let filter = "all", query = "", showAll = false;
+  const initials = (n) => n.split(" ").map((p) => p[0]).join("").slice(0, 2);
+  function renderOfficers() {
+    const q = query.trim().toLowerCase();
+    let list = officers.filter((o) => (filter === "all" || !o.verified) && (!q || `${o.name} ${o.rank} ${o.station}`.toLowerCase().includes(q)));
+    list = list.slice().sort((a, b) => b.responses - a.responses || a.name.localeCompare(b.name));
+    const shown = showAll || q || filter !== "all" ? list : list.slice(0, 10);
+    $("officers-title").textContent = `Officers (${officers.length})`;
+    $("officer-rows").innerHTML = shown.length ? shown.map((o) => `<tr>
+      <td class="who"><b>${esc(o.name)}</b></td>
+      <td>${o.rank}</td>
+      <td>ZRP ${esc(o.station)}</td>
+      <td>${o.verified ? '<span class="chip c-ok">Verified</span>' : '<span class="chip c-warn">Pending</span>'}</td>
+      <td class="r num">${o.responses}</td>
+      <td class="num">${fmtDay(o.joined)}</td></tr>`).join("") : `<tr><td colspan="6" style="color:var(--muted)">No officers match “${esc(query)}”.</td></tr>`;
+    $("officer-count").textContent = `Showing ${shown.length} of ${list.length}${filter === "pending" ? " pending an ID check" : ""}`;
+    $("more").hidden = !!(q || filter !== "all") || list.length <= 10;
+    $("more").textContent = showAll ? "Show fewer" : `Show all ${list.length}`;
+  }
+  $("search").addEventListener("input", (e) => { query = e.target.value; renderOfficers(); });
+  document.querySelectorAll(".seg button").forEach((b) => b.addEventListener("click", () => {
+    document.querySelectorAll(".seg button").forEach((x) => x.classList.toggle("on", x === b)); filter = b.dataset.filter; renderOfficers();
+  }));
+  $("more").addEventListener("click", () => { showAll = !showAll; renderOfficers(); });
+  $("kv-seats").textContent = `${officers.length} of 80`;
+  $("kv-left").textContent = 80 - officers.length;
+  $("kv-stations").textContent = STATION_NAMES.length;
+  $("copy").addEventListener("click", async () => {
+    const b = $("copy");
+    try { await navigator.clipboard.writeText($("code").textContent); b.textContent = "Copied"; }
+    catch { const r = document.createRange(); r.selectNodeContents($("code")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected"; }
+    setTimeout(() => (b.textContent = "Copy"), 1800);
+  });
+  function renderRank() {
+    $("rank").innerHTML = officers.slice().sort((a, b) => b.responses - a.responses).slice(0, 5).map((o) =>
+      `<li><span class="avatar" style="background:${o.color}">${initials(o.name)}</span><span class="who"><b>${esc(o.name)}</b><span>${o.rank} · ZRP ${esc(o.station)}</span></span><span class="num">${o.responses}</span></li>`).join("");
+  }
+
+  // ---- Reports ----------------------------------------------------------------------------
+  function monthStats(y, m) {
+    const xs = alerts.filter((a) => { const d = new Date(a.t + 2 * HOUR); return d.getUTCFullYear() === y && d.getUTCMonth() === m; });
+    const closed = xs.filter((a) => a.outcome !== "cancelled"), answered = closed.filter((a) => a.firstS != null);
+    return { n: xs.length, answered: pct(answered.length, closed.length), med: median(answered.map((a) => a.firstS)), officers: xs.reduce((s, a) => s + a.officers, 0), duress: xs.filter((a) => a.outcome === "duress").length, unanswered: xs.filter((a) => a.outcome === "unanswered").length, within5: pct(answered.filter((a) => a.firstS <= 300).length, closed.length) };
+  }
+  const MONTHS = [["October 2026", 2026, 9, "In progress"], ["September 2026", 2026, 8, "Final"], ["August 2026", 2026, 7, "Final"]];
+  $("reports-list").innerHTML = MONTHS.map(([label, y, m, note], i) => {
+    const s = monthStats(y, m);
+    return `<div class="rep${i === 1 ? " open" : ""}">
+      <button class="rep-btn" type="button" aria-expanded="${i === 1}">
+        <span class="m">${label}<span>${note}</span></span>
+        <span class="k">Alerts<b>${s.n}</b></span>
+        <span class="k hide-sm">Answered<b>${s.answered}%</b></span>
+        <span class="k hide-sm">Median response<b>${fmtDur(s.med)}</b></span>
+        <span class="k hide-sm">Officer responses<b>${s.officers}</b></span>
+        <span class="caret" aria-hidden="true">›</span>
+      </button>
+      <div class="rep-body" ${i === 1 ? "" : "hidden"}>
+        <p>People in Bulawayo raised <b>${s.n} community alerts</b>. <b>${s.answered}%</b> were answered by a responder, <b>${s.within5}%</b> within 5 minutes, with a median first responder after <b>${fmtDur(s.med)}</b>.</p>
+        <p>ZRP officers made <b>${s.officers} responses</b>. <b>${s.duress}</b> duress signal${s.duress === 1 ? " was" : "s were"} raised and kept live for responders; <b>${s.unanswered}</b> alert${s.unanswered === 1 ? " was" : "s were"} unanswered and are listed for follow-up by the station.</p>
+      </div></div>`;
+  }).join("");
+  $("reports-list").addEventListener("click", (e) => {
+    const b = e.target.closest(".rep-btn"); if (!b) return;
+    const rep = b.parentElement, body = rep.querySelector(".rep-body"), open = body.hidden;
+    body.hidden = !open; rep.classList.toggle("open", open); b.setAttribute("aria-expanded", String(open));
+  });
+
+  // ---- Tabs follow the scroll -----------------------------------------------------------
+  const tabs = [...document.querySelectorAll(".tabs a")];
+  const io = new IntersectionObserver((entries) => {
+    for (const en of entries) if (en.isIntersecting) tabs.forEach((t) => t.classList.toggle("on", t.getAttribute("href") === `#${en.target.id}`));
+  }, { rootMargin: "-160px 0px -60% 0px" });
+  ["overview", "live", "stations", "incidents", "officers", "reports"].forEach((id) => io.observe(document.getElementById(id)));
+
+  $("range").textContent = `${fmtDay(NOW - 30 * DAY)} – ${fmtDay(NOW)}`;
+  addLive({ person: "Sibongile N.", area: "Nkulumane", startedAgo: 192, community: 2, officers: 1, notified: 842 });
+  addLive({ person: "Thabani M.", area: "Makokoba", startedAgo: 61, community: 1, notified: 1130 });
+  drawWeeks(); drawResp(); drawHeat(); renderTypes(); renderStations(); renderAlerts(); renderOfficers(); renderRank(); renderLive(); renderTiles(); drawMap();
+  map.fitBounds(L.latLngBounds([...recent().map((a) => [a.lat, a.lng]), ...Object.values(STATIONS)]), { padding: [24, 24] });
+})();
+</script>
+</body>
+</html>

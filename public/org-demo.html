@@ -589,7 +589,7 @@ footer { max-width: 1320px; margin: 0 auto; padding: 0 20px 40px; color: var(--m
   // Harare on a real map (Leaflet with OpenStreetMap's tiles, darkened in CSS to match the page).
   const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
   let highlighted = null;
-  const map = L.map("map", { scrollWheelZoom: false }).setView([-17.83, 31.06], 12);
+  const map = L.map("map", { scrollWheelZoom: false, fadeAnimation: false }).setView([-17.83, 31.06], 12);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
